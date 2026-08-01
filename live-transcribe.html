@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Live Transcribe Dual Screen — Lola Ogundipe</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fragment+Mono:ital,wght@0,400;1,400&family=Geist+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div id="cursor"></div>
+<div id="cursor-follow"></div>
+<div id="cursor-label"></div>
+
+<nav id="nav">
+  <a href="index.html" class="nav-logo">
+    <span>Lola/</span>
+    <span>Ogundipe</span>
+  </a>
+  <div class="nav-links">
+    <a href="index.html" class="nav-link">Home</a>
+    <a href="index.html#work" class="nav-link is-active">&lt; Work &gt;</a>
+    <a href="index.html#about" class="nav-link">About</a>
+    <a href="index.html#skills" class="nav-link">Tools</a>
+  </div>
+  <a href="index.html#contact" class="nav-cta">Contact</a>
+</nav>
+
+<!-- PAGE HEADER -->
+<header class="cs-page-header">
+  <a href="index.html#work" class="cs-back-link">← Back to work</a>
+  <div class="cs-eyebrow">Case study 03 · Google · Feature Design · Foldable</div>
+  <h1 class="cs-page-title">Live Transcribe<br>Dual Screen</h1>
+  <p class="cs-page-sub">Designing a text-to-speech dual-screen feature for Google's foldable device — using the fold as a design affordance, not a constraint. Launched with Pixel Fold, May 2024.</p>
+  <div class="cs-hero-image">
+    <img src="https://framerusercontent.com/images/YS4sCQWXcGCDj0aHO2UPn3aYpgA.png" alt="Live Transcribe Dual Screen hero">
+  </div>
+</header>
+
+<!-- CASE STUDY BODY -->
+<section class="cs-page">
+  <div class="cs-grid">
+
+    <aside class="cs-sticky">
+      <div class="cs-title reveal">At a glance</div>
+      <div class="cs-meta-strip reveal">
+        <div class="cs-meta-row"><span class="label">Role</span><span class="value">Feature Designer</span></div>
+        <div class="cs-meta-row"><span class="label">Timeline</span><span class="value">Oct 2023–May 2024</span></div>
+        <div class="cs-meta-row"><span class="label">Tools</span><span class="value">Figma</span></div>
+        <div class="cs-meta-row"><span class="label">Platform</span><span class="value">Pixel Fold · Android</span></div>
+        <div class="cs-meta-row"><span class="label">Methods</span><span class="value">Journey mapping · IA · Prototyping</span></div>
+      </div>
+      <div class="cs-impact-callout reveal">
+        <strong>↗ Shipped</strong>
+        Launched at Google I/O alongside the Pixel Fold announcement, May 2024.
+      </div>
+      <div class="cs-impact-callout reveal" style="margin-top:12px; border-color:rgba(94,122,106,0.3); background:rgba(94,122,106,0.08); color:#5e7a6a;">
+        <strong>2 panels</strong>
+        One device. Two audiences. The fold made it possible.
+      </div>
+    </aside>
+
+    <div class="cs-sections">
+
+      <div class="cs-section">
+        <div class="cs-section-num">01 — About the product</div>
+        <div class="cs-section-title">What is Live Transcribe?</div>
+        <div class="cs-section-body">
+          Live Transcribe captures speech and sound as text for d/Deaf and hard-of-hearing users. It’s Google’s most-used assistive tech — about <strong>2.5 million daily users</strong>.
+        </div>
+        <div class="cs-media cs-media--wide">
+          <img src="https://framerusercontent.com/images/dXg5GyhyX59ViH8jhDGnYRtgE.png" alt="Live Transcribe on foldable and standard phone" loading="lazy">
+          <div class="cs-media-caption">Live Transcribe — standard transcription and dual-screen conversation mode.</div>
+        </div>
+      </div>
+
+      <div class="cs-section">
+        <div class="cs-section-num">02 — Problem</div>
+        <div class="cs-section-title">Transcription in conversation is awkward</div>
+        <div class="cs-section-body">
+          The ergonomic experience breaks down mid-conversation: constant app switching to reply, and frequently turning the device so others can see the screen.
+        </div>
+      </div>
+
+      <div class="cs-section">
+        <div class="cs-section-num">03 — Research</div>
+        <div class="cs-section-title">One device, no hand-offs</div>
+        <div class="cs-section-body">
+          Partner research with Samsung showed how hard it is to use Live Transcribe on a single device. Users were juggling phones and handing devices around to keep conversations going.
+        </div>
+        <div class="pull-quote">“When I talk with others, I use Live Transcribe on the Galaxy and insert text on my iPhone to show others. It’s really hard to have a conversation with one device handing here and there.” — Research participant</div>
+        <div class="cs-section-body" style="margin-top:20px;"><strong>Research insights</strong></div>
+        <ul class="cs-list">
+          <li>Users didn’t want to use multiple devices</li>
+          <li>Users don’t like handing their device to strangers</li>
+          <li>Users were relying on other apps for voice / text-to-speech</li>
+        </ul>
+      </div>
+
+      <div class="cs-section">
+        <div class="cs-section-num">04 — Journey</div>
+        <div class="cs-section-title">Mapping the dual-screen experience</div>
+        <div class="cs-section-body">
+          User journeys and IA work placed the feature where foldable posture made dual-screen mode discoverable — without disrupting core transcription.
+        </div>
+        <div class="cs-media cs-media--wide">
+          <img src="https://framerusercontent.com/images/9u37T9xwjBCMBcqbXMPotAxJZ4.png" alt="Information architecture for home transcription and foldable controls" loading="lazy">
+          <div class="cs-media-caption">IA map — navigation, keyboard controls, and foldable entry points.</div>
+        </div>
+      </div>
+
+      <div class="cs-section">
+        <div class="cs-section-num">05 — Form factors</div>
+        <div class="cs-section-title">Inside, outside, and Z Flip</div>
+        <div class="cs-section-body">
+          Designs covered inside and outside screens, plus a modified version for Samsung Z Flip’s smaller real estate. A delete control let users clear text quickly.
+        </div>
+        <div class="cs-media-row">
+          <div class="cs-media">
+            <img src="https://framerusercontent.com/images/7rw4xb3H331nzwgP25plLhbJHF8.png" alt="Inside screen typed response design" loading="lazy">
+            <div class="cs-media-caption">Inside screen</div>
+          </div>
+          <div class="cs-media cs-media--device">
+            <img src="https://framerusercontent.com/images/Li5Z4wj2F0olPa1RZyKIz0fV4.png" alt="Outside screen dual-screen design" loading="lazy">
+            <div class="cs-media-caption">Outside screen</div>
+          </div>
+          <div class="cs-media cs-media--device">
+            <img src="https://framerusercontent.com/images/0aiGOxcw1ncIba4iSrWYqxm7c.png" alt="Samsung Z Flip cover screen design" loading="lazy">
+            <div class="cs-media-caption">Samsung Z Flip</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="cs-section">
+        <div class="cs-section-num">06 — Version 1</div>
+        <div class="cs-section-title">First design pass</div>
+        <div class="cs-section-body">
+          Version 1 introduced TTS controls and an early “foldable mode” so users could type a reply the device spoke aloud for the person on the other side.
+        </div>
+        <div class="cs-media">
+          <img src="https://framerusercontent.com/images/rldZFPWobBbeeYFiIuCY0BmoPFc.png" alt="Version 1 Foldable mode on interface" loading="lazy">
+          <div class="cs-media-caption">V1 — Foldable mode on, Speak, and Clear.</div>
+        </div>
+      </div>
+
+      <div class="cs-section">
+        <div class="cs-section-num">07 — Version 2</div>
+        <div class="cs-section-title">Dual Screen — naming, privacy, consistency</div>
+        <div class="cs-section-body">
+          With UX Writing and Marketing, naming moved from <strong>Foldable Mode</strong> to <strong>Dual Screen</strong>. Iteration also added privacy visibility controls and minimized icons for consistency across form factors.
+        </div>
+        <ul class="cs-list">
+          <li>Renamed for clarity and marketing consistency</li>
+          <li>Visibility toggle to hide/show text for privacy</li>
+          <li>Icon-only controls for cross-device consistency</li>
+        </ul>
+        <div class="cs-media-grid" style="margin-top:20px;">
+          <div class="cs-media">
+            <img src="https://framerusercontent.com/images/R7GGjM1CS56ODXpyoy6PJhSCyU.png" alt="Version 2 Dual Screen controls" loading="lazy">
+            <div class="cs-media-caption">V2 — Dual Screen + privacy controls</div>
+          </div>
+          <div class="cs-media">
+            <img src="https://framerusercontent.com/images/F0ZGfYjPqntKJM2AgQV3V3XLQg.png" alt="Minimized icon controls across form factors" loading="lazy">
+            <div class="cs-media-caption">Minimized icons across form factors</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="cs-section">
+        <div class="cs-section-num">08 — First use</div>
+        <div class="cs-section-title">Tooltips that teach without clutter</div>
+        <div class="cs-section-body">
+          Icon-only controls needed context. I collaborated on a first-run tooltip sequence so users understood each control once — then the UI stayed clean.
+        </div>
+        <div class="cs-media-grid">
+          <div class="cs-media">
+            <img src="https://framerusercontent.com/images/3KBij11hV5IkQuwsfv0xmQv3l9M.png" alt="Tooltip for privacy visibility control" loading="lazy">
+            <div class="cs-media-caption">Privacy visibility tooltip</div>
+          </div>
+          <div class="cs-media">
+            <img src="https://framerusercontent.com/images/rhlUYcEYjykpd8epaadfmxSqu4.png" alt="Tooltip for delete typed response" loading="lazy">
+            <div class="cs-media-caption">Delete response tooltip</div>
+          </div>
+        </div>
+        <div class="cs-media" style="margin-top:16px;">
+          <img src="https://framerusercontent.com/images/FAhyJt1EDI470UJ5pUSdGdtYu1I.png" alt="Tooltip for text-to-speech speak control" loading="lazy">
+          <div class="cs-media-caption">Speak / TTS tooltip</div>
+        </div>
+      </div>
+
+      <div class="cs-section">
+        <div class="cs-section-num">09 — Outcome</div>
+        <div class="cs-section-title">Shipped with Pixel Fold</div>
+        <div class="cs-section-body">
+          The dual-screen feature launched with Pixel Fold / Pixel Pro Fold (Aug 2024) — a new take on accessibility across form factors. Live Transcribe became a shared conversational interface, not just a single-user tool.
+        </div>
+        <div class="cs-media cs-media--wide">
+          <img src="https://framerusercontent.com/images/g3Typ2qU0mSfemeRY7CO3jBg.png" alt="Pixel Fold announcement of Live Transcribe Dual Mode" loading="lazy">
+          <div class="cs-media-caption">Pixel Fold — Dual Mode product announcement.</div>
+        </div>
+        <div class="cs-media cs-media--wide" style="margin-top:16px;">
+          <img src="https://framerusercontent.com/images/iXekpVSPn9P4JIYVRzyjkZfNXXE.png" alt="Google Keyword blog featuring Pixel accessibility updates" loading="lazy">
+          <div class="cs-media-caption">Highlighted in Google’s accessibility launch coverage (Aug 2024).</div>
+        </div>
+        <div class="cs-media cs-media--device" style="margin-top:16px;">
+          <img src="https://framerusercontent.com/images/ylsSjNuW8ZaTQ1Qwvg8UjuF5Gc.png" alt="Final Dual Screen UI on phone" loading="lazy">
+          <div class="cs-media-caption">Shipped Dual Screen UI.</div>
+        </div>
+      </div>
+
+      <div class="cs-section">
+        <div class="cs-section-num">10 — Lessons</div>
+        <div class="cs-section-title">What I carry forward</div>
+        <ul class="cs-list">
+          <li>Stay aware of form-factor constraints while implementing</li>
+          <li>Speaking engineers’ language speeds the development process</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<a href="market-fresh.html" class="cs-next">
+  <div>
+    <div class="cs-next-label">Next case study · 04</div>
+    <div class="cs-next-title">Market Fresh<br>Website</div>
+  </div>
+  <div class="cs-next-arrow">→</div>
+</a>
+
+<section id="contact">
+  <div class="contact-eyebrow reveal">Let's work together</div>
+  <h2 class="contact-headline reveal">Have a problem<br><em>worth solving?</em></h2>
+  <div class="contact-links reveal">
+    <a href="mailto:hello@uxwithlola.design" class="contact-link primary">Say hello</a>
+    <a href="https://www.linkedin.com/in/lola-ogundipe/" target="_blank" class="contact-link">LinkedIn</a>
+    <a href="https://drive.google.com/file/d/182oYnzfOsr-Dm9d5h4mqqN-zahc0xmPP/view" target="_blank" class="contact-link">Resume</a>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-text">© 2024 Lola Ogundipe — UX Designer</div>
+  <div class="footer-text">New York · Available for freelance & full-time</div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
