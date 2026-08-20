@@ -953,6 +953,13 @@ footer {
 .cs-media--wide img {
   max-height: 220px;
 }
+.cs-media.cs-media--viz {
+  max-width: none;
+}
+.cs-media.cs-media--viz img,
+.cs-media.cs-media--viz video {
+  max-height: none;
+}
 .cs-media--device {
   max-width: 160px;
 }
