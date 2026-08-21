@@ -113,7 +113,7 @@ nav {
 .nav-links {
   display: flex;
   align-items: center;
-  gap: 28px;
+  gap: 22px;
   margin-left: auto;
   padding: 0 8px;
 }
@@ -383,6 +383,17 @@ section { padding: 100px 48px; scroll-margin-top: 64px; }
 .window-controls {
   letter-spacing: 0.2em;
   opacity: 0.7;
+}
+
+/* ─── PLAY ──────────────────────────────────────────── */
+#play { background: var(--bg); border-bottom: 1px solid var(--border); }
+.play-lede {
+  max-width: 560px;
+  margin: -36px 0 40px;
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.5;
+  color: var(--text2);
 }
 
 /* ─── WORK / PROJECTS ───────────────────────────────── */
@@ -2150,6 +2161,135 @@ footer {
   margin: 24px 0;
   line-height: 1.5;
 }
+.pull-quote cite {
+  display: block;
+  margin-top: 12px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-style: normal;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text3);
+}
+
+.cs-header-actions {
+  position: relative;
+  margin-top: 28px;
+}
+.cs-live-cta {
+  width: 100%;
+  margin-top: 16px;
+}
+
+.cs-phones {
+  display: flex;
+  gap: 16px;
+  margin-top: 40px;
+  position: relative;
+  align-items: flex-end;
+}
+.cs-phones .cs-media {
+  margin-top: 0;
+  flex: 0 1 220px;
+  max-width: 220px;
+}
+.cs-phones .cs-media img {
+  max-height: 440px;
+}
+
+.cs-tag-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 20px;
+}
+.cs-tag-row span {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--text2);
+  border: 1px solid var(--border);
+  padding: 8px 12px;
+}
+
+.cs-ai-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-top: 20px;
+}
+.cs-ai-card {
+  border: 1px solid var(--border);
+  background: var(--bg);
+  padding: 18px 18px 18px 16px;
+  border-left: 3px solid var(--text);
+}
+.cs-ai-card.is-hot { border-left-color: var(--accent-hot); }
+.cs-ai-name {
+  font-family: var(--font-display);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  text-transform: uppercase;
+  color: var(--text);
+  margin-bottom: 8px;
+}
+.cs-ai-body {
+  font-family: var(--font-body);
+  font-size: 14px;
+  line-height: 1.45;
+  color: var(--text2);
+}
+
+.cs-ship-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(220px, 0.85fr);
+  gap: 24px 28px;
+  margin-top: 8px;
+  align-items: start;
+}
+.cs-shipped {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--border);
+}
+.cs-shipped li {
+  padding: 14px 16px;
+  border-bottom: 1px solid var(--border-dim);
+  font-family: var(--font-body);
+  font-size: 14px;
+  line-height: 1.45;
+  color: var(--text2);
+}
+.cs-shipped li:last-child { border-bottom: none; }
+.cs-shipped strong {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  color: var(--text);
+  margin-bottom: 4px;
+}
+.cs-stack {
+  border: 1px solid var(--border);
+}
+.cs-stack-title {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 12px 14px;
+  border-bottom: 1px solid var(--border);
+  background: var(--text);
+  color: var(--bg);
+}
+.cs-stack .cs-meta-row:last-child { border-bottom: none; }
 
 /* ─── DESIGN PROCESS CTA ────────────────────────────── */
 .cs-process-teaser {
@@ -2510,6 +2650,11 @@ html.cs-auth-pending #cursor-follow {
   .cs-patch { grid-template-columns: 1fr; }
   .cs-trace-grid { grid-template-columns: 1fr; }
   .cs-iter-list li { grid-template-columns: 1fr; }
+  .cs-phones { flex-wrap: wrap; }
+  .cs-phones .cs-media { max-width: 140px; flex-basis: 140px; }
+  .cs-phones .cs-media img { max-height: 280px; }
+  .cs-ai-grid,
+  .cs-ship-grid { grid-template-columns: 1fr; }
   .hero-meta-bar { flex-direction: column; gap: 8px; }
   footer { flex-direction: column; text-align: left; padding: 20px; }
 }

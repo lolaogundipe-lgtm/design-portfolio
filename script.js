@@ -81,6 +81,7 @@
   const map = {
     home: document.getElementById('hero'),
     work: document.getElementById('work'),
+    play: document.getElementById('play'),
     about: document.getElementById('about'),
     skills: document.getElementById('skills')
   };
@@ -104,7 +105,7 @@
 
   window.addEventListener('scroll', () => {
     nav.classList.toggle('scrolled', window.scrollY > 40);
-    const order = ['skills', 'about', 'work', 'home'];
+    const order = ['skills', 'about', 'play', 'work', 'home'];
     for (const key of order) {
       const el = map[key];
       if (!el) continue;

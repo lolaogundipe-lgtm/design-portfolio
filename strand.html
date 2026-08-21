@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Strand — Lola Ogundipe</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fragment+Mono:ital,wght@0,400;1,400&family=Geist+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div id="cursor"></div>
+<div id="cursor-follow"></div>
+<div id="cursor-label"></div>
+
+<nav id="nav">
+  <a href="index.html" class="nav-logo">
+    <span>Lola/</span>
+    <span>Ogundipe</span>
+  </a>
+  <div class="nav-links">
+    <a href="index.html" class="nav-link">Home</a>
+    <a href="index.html#work" class="nav-link">Work</a>
+    <a href="index.html#play" class="nav-link is-active">&lt; Play &gt;</a>
+    <a href="index.html#about" class="nav-link">About</a>
+    <a href="index.html#skills" class="nav-link">Tools</a>
+  </div>
+  <a href="index.html#contact" class="nav-cta">Contact</a>
+</nav>
+
+<!-- PAGE HEADER -->
+<header class="cs-page-header cs-wide-copy">
+  <a href="index.html#play" class="cs-back-link">← Back to play</a>
+  <div class="cs-eyebrow">Play · 0 → 1 · Solo build · Web PWA + iOS</div>
+  <h1 class="cs-page-title">Strand</h1>
+  <p class="cs-page-sub">Track every strand. Build every habit. A hair-care routine tracker, taken from a blank file to a live product with accounts, a database, push notifications, analytics, and a native iOS app — built solo, with AI as the engineering team.</p>
+  <div class="cs-header-actions">
+    <a href="https://strand-hair.vercel.app/" class="btn-solid" target="_blank" rel="noopener noreferrer">Open live app →</a>
+  </div>
+  <div class="cs-phones">
+    <div class="cs-media cs-media--device cs-media--cutout">
+      <img src="images/strand-onboarding-01.png" alt="Strand splash — Hair care deserves a system">
+    </div>
+    <div class="cs-media cs-media--device cs-media--cutout">
+      <img src="images/strand-onboarding-02.png" alt="Strand onboarding — Everything in one place">
+    </div>
+    <div class="cs-media cs-media--device cs-media--cutout">
+      <img src="images/strand-onboarding-03.png" alt="Strand onboarding — Ready to start tracking">
+    </div>
+  </div>
+</header>
+
+<!-- CASE STUDY BODY -->
+<section class="cs-page cs-wide-copy">
+  <div class="cs-grid">
+
+    <aside class="cs-sticky">
+      <div class="cs-title reveal">At a glance</div>
+      <div class="cs-meta-strip reveal">
+        <div class="cs-meta-row"><span class="label">Built by</span><span class="value">Oyinlola Ogundipe</span></div>
+        <div class="cs-meta-row"><span class="label">Role</span><span class="value">Founder · Designer · Builder</span></div>
+        <div class="cs-meta-row"><span class="label">Timeline</span><span class="value">Apr 2026 – Present</span></div>
+        <div class="cs-meta-row"><span class="label">Platform</span><span class="value">Web PWA + iOS</span></div>
+        <div class="cs-meta-row"><span class="label">Build tools</span><span class="value">Claude Code · Cursor</span></div>
+      </div>
+      <div class="cs-impact-callout reveal">
+        <strong>0 → 1</strong>
+        Idea to shipped product — accounts, database, analytics, and a native app.
+      </div>
+      <div class="cs-impact-callout reveal" style="margin-top:12px; border-color: rgba(94,122,106,0.3); background: rgba(94,122,106,0.08); color: #5e7a6a;">
+        <strong>~80</strong>
+        Commits. One founder. One person on the team.
+      </div>
+      <a href="https://strand-hair.vercel.app/" class="btn-solid cs-live-cta reveal" target="_blank" rel="noopener noreferrer">Open live app →</a>
+    </aside>
+
+    <div class="cs-sections">
+
+      <div class="cs-section">
+        <div class="cs-section-num">01 — The idea</div>
+        <div class="cs-section-title">Hair care deserves a system</div>
+        <div class="cs-section-body">
+          Hair care routines are easy to start and easy to lose track of — which products worked, how long wash day actually took, whether a habit stuck. <strong>Strand</strong> is a lightweight tracker for exactly that: wash-day logs, a routine timer built from reusable steps, product usage (including barcode scanning), hair-growth progress, and daily habits — all in one place, with the history to show what's actually working.
+        </div>
+        <div class="cs-tag-row">
+          <span>Wash-day logging</span>
+          <span>Routine &amp; step builder</span>
+          <span>Barcode product scan</span>
+          <span>Growth &amp; habit tracking</span>
+          <span>Guided onboarding</span>
+          <span>Push notifications</span>
+        </div>
+      </div>
+
+      <div class="cs-section">
+        <div class="cs-section-num">02 — Building with AI</div>
+        <div class="cs-section-title">From empty repo to full product</div>
+        <div class="cs-section-body">
+          Strand was built end-to-end by one person, with AI tools standing in for the roles a small startup team would normally fill: engineer, designer, and QA. Every layer of the stack — UI, backend schema, auth, analytics, native packaging — was built through an AI-assisted workflow rather than a traditional team.
+        </div>
+        <div class="cs-ai-grid">
+          <article class="cs-ai-card is-hot">
+            <div class="cs-ai-name">Claude Code</div>
+            <p class="cs-ai-body">The primary build engine. Used to write and ship full features directly in the codebase — the routine/step picker, Mixpanel event instrumentation, the password-reset flow, and a rebuild of the product barcode-scan lookup into a self-healing, cache-first chain when the original flow proved flaky.</p>
+          </article>
+          <article class="cs-ai-card">
+            <div class="cs-ai-name">Cursor</div>
+            <p class="cs-ai-body">In-editor AI pairing for faster iteration on the single-page app (index.html), used alongside Claude Code for quick fixes and inline changes during active development sessions.</p>
+          </article>
+          <article class="cs-ai-card">
+            <div class="cs-ai-name">Figma (MCP-driven design)</div>
+            <p class="cs-ai-body">Onboarding and splash screens were generated and iterated on directly through an AI-driven Figma workflow, producing the dark, editorial look carried through the whole app — no separate design tool hand-off required.</p>
+          </article>
+          <article class="cs-ai-card is-hot">
+            <div class="cs-ai-name">Supabase MCP</div>
+            <p class="cs-ai-body">Database schema and migrations — onboarding tooltip state, push notification subscriptions — were authored and applied directly from the AI agent against the live Postgres backend, skipping a manual admin-console workflow entirely.</p>
+          </article>
+        </div>
+        <blockquote class="pull-quote">
+          “The bottleneck was never ‘can this be built’ — it was staying decisive enough to keep briefing the AI clearly. Once that clicked, a single founder could carry frontend, backend, analytics, and a native app release at the same time.”
+          <cite>— on building Strand solo</cite>
+        </blockquote>
+      </div>
+
+      <div class="cs-section">
+        <div class="cs-section-num">03 — How it shipped</div>
+        <div class="cs-section-title">Four months, one loop</div>
+        <div class="cs-iters">
+          <ol class="cs-iter-list">
+            <li>
+              <div>
+                <div class="cs-iter-num">Apr<span>2026</span></div>
+              </div>
+              <div class="cs-iter-meta">
+                <h3>First commit, live on Vercel</h3>
+                <p>Core wash-day tracker, routine timer, and onboarding tooltips built and pushed live.</p>
+              </div>
+            </li>
+            <li>
+              <div>
+                <div class="cs-iter-num">May–Jun<span>2026</span></div>
+              </div>
+              <div class="cs-iter-meta">
+                <h3>Onboarding, push, quick-add</h3>
+                <p>Guided onboarding tour rebuilt (Next-driven, not just “Got it”), push notifications enabled for existing users, and a quick-add step library shipped so wash-day logging stopped requiring free-typed steps every time.</p>
+              </div>
+            </li>
+            <li>
+              <div>
+                <div class="cs-iter-num">Jul<span>2026</span></div>
+              </div>
+              <div class="cs-iter-meta">
+                <h3>Native iOS + barcode scan</h3>
+                <p>Native iOS app wired up via Capacitor, with on-device barcode scanning for product lookups. Figma-driven onboarding screens refreshed.</p>
+              </div>
+            </li>
+            <li>
+              <div>
+                <div class="cs-iter-num">Aug<span>2026</span></div>
+              </div>
+              <div class="cs-iter-meta">
+                <h3>Analytics, auth, self-healing scan</h3>
+                <p>Mixpanel instrumented across the full measurement plan (funnels + dashboards), Vercel Analytics added, password-reset auth flow shipped, product-scan lookup rebuilt as a self-healing cache-first chain, and a web-camera barcode fallback added so scanning works off iOS too.</p>
+              </div>
+            </li>
+          </ol>
+        </div>
+      </div>
+
+      <div class="cs-section">
+        <div class="cs-section-num">04 — What shipped</div>
+        <div class="cs-section-title">A product, not a prototype</div>
+        <div class="cs-ship-grid">
+          <ul class="cs-shipped">
+            <li>
+              <strong>Wash-day logging</strong>
+              Routines built from reusable, timed steps with a duration ring.
+            </li>
+            <li>
+              <strong>Product tracking</strong>
+              Barcode scan (native + web fallback) with a cache-first lookup chain.
+            </li>
+            <li>
+              <strong>Growth &amp; habits</strong>
+              Progress photos and daily-habit tracking.
+            </li>
+            <li>
+              <strong>Guided onboarding</strong>
+              First-time-only, Next-driven tour.
+            </li>
+            <li>
+              <strong>Auth</strong>
+              Accounts with a working password-reset flow.
+            </li>
+            <li>
+              <strong>Push notifications</strong>
+              Opt-in for new and existing users.
+            </li>
+            <li>
+              <strong>Analytics</strong>
+              Mixpanel funnels/dashboards + Vercel Analytics.
+            </li>
+            <li>
+              <strong>Native app</strong>
+              iOS build via Capacitor from the same codebase.
+            </li>
+          </ul>
+          <div class="cs-stack">
+            <div class="cs-stack-title">Stack</div>
+            <div class="cs-meta-row"><span class="label">Frontend</span><span class="value">Single-page PWA (vanilla JS)</span></div>
+            <div class="cs-meta-row"><span class="label">Backend</span><span class="value">Supabase (Postgres + Auth)</span></div>
+            <div class="cs-meta-row"><span class="label">Native</span><span class="value">Capacitor (iOS)</span></div>
+            <div class="cs-meta-row"><span class="label">Scanning</span><span class="value">ML Kit + ZXing web fallback</span></div>
+            <div class="cs-meta-row"><span class="label">Analytics</span><span class="value">Mixpanel + Vercel Analytics</span></div>
+            <div class="cs-meta-row"><span class="label">Hosting</span><span class="value">Vercel</span></div>
+            <div class="cs-meta-row"><span class="label">Design</span><span class="value">Figma (AI-generated screens)</span></div>
+            <div class="cs-meta-row"><span class="label">Build tools</span><span class="value">Claude Code, Cursor</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="cs-section">
+        <div class="cs-section-num">05 — Why it matters</div>
+        <div class="cs-section-title">One person, a full stack</div>
+        <div class="cs-section-body">
+          Strand shows what a non-engineer-led, one-person team can now ship: a real multi-platform product with auth, a live database, analytics, and a native app — not a prototype. AI tools collapsed the roles that used to require a team into a single, fast build loop.
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<a href="index.html#play" class="cs-next">
+  <div>
+    <div class="cs-next-label">Back to play</div>
+    <div class="cs-next-title">View all<br>experiments</div>
+  </div>
+  <div class="cs-next-arrow">→</div>
+</a>
+
+<section id="contact">
+  <div class="contact-eyebrow reveal">Let's work together</div>
+  <h2 class="contact-headline reveal">Have a problem<br><em>worth solving?</em></h2>
+  <div class="contact-links reveal">
+    <a href="mailto:hello@uxwithlola.design" class="contact-link primary">Say hello</a>
+    <a href="https://www.linkedin.com/in/lola-ogundipe/" target="_blank" class="contact-link">LinkedIn</a>
+    <a href="https://drive.google.com/file/d/182oYnzfOsr-Dm9d5h4mqqN-zahc0xmPP/view" target="_blank" class="contact-link">Resume</a>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-text">© 2026 LOLA OGUNDIPE — UX DESIGNER</div>
+  <div class="footer-text">NEW YORK · AVAILABLE FOR FREELANCE &amp; FULL-TIME</div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
