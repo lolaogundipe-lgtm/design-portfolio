@@ -3,22 +3,14 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Project Relate Visual Re-design — Lola Ogundipe</title>
+<title>Rebuilding Relate's Design System — Lola Ogundipe</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fragment+Mono:ital,wght@0,400;1,400&family=Geist+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="icon" href="favicon.ico" sizes="any">
+<link rel="icon" type="image/png" href="favicon-192.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
 <link rel="stylesheet" href="style.css">
-<script>
-(() => {
-  try {
-    if (sessionStorage.getItem('uxwithlola_cs_auth') !== '1') {
-      document.documentElement.classList.add('cs-auth-pending');
-    }
-  } catch (e) {
-    document.documentElement.classList.add('cs-auth-pending');
-  }
-})();
-</script>
 </head>
 <body>
 
@@ -34,7 +26,6 @@
   <div class="nav-links">
     <a href="index.html" class="nav-link">Home</a>
     <a href="index.html#work" class="nav-link is-active">&lt; Work &gt;</a>
-    <a href="index.html#play" class="nav-link">Play</a>
     <a href="index.html#about" class="nav-link">About</a>
     <a href="index.html#skills" class="nav-link">Tools</a>
   </div>
@@ -42,18 +33,15 @@
 </nav>
 
 <!-- PAGE HEADER -->
-<header class="cs-page-header">
+<header class="cs-page-header cs-wide-copy">
   <a href="index.html#work" class="cs-back-link">← Back to work</a>
   <div class="cs-eyebrow">Case study 02 · Google · Design Systems</div>
-  <h1 class="cs-page-title">Project Relate<br>Visual Re-design</h1>
-  <p class="cs-page-sub">Overhauling the visual system of an accessibility app — bringing Material 3 to Project Relate while custom-tuning components for users with motor, cognitive, and low-vision needs.</p>
-  <div class="cs-hero-image">
-    <img src="https://framerusercontent.com/images/duim7aAt87vcK95OLoa945jSp8.png" alt="Project Relate visual redesign hero">
-  </div>
+  <h1 class="cs-page-title">Rebuilding Relate's<br>Design System</h1>
+  <p class="cs-page-sub">Overhauling the visual system of an accessibility app by bringing Material 3 to Project Relate while custom-tuning components for users with motor, cognitive, and low-vision needs.</p>
 </header>
 
 <!-- CASE STUDY BODY -->
-<section class="cs-page">
+<section class="cs-page cs-wide-copy">
   <div class="cs-grid">
 
     <aside class="cs-sticky">
@@ -66,8 +54,8 @@
         <div class="cs-meta-row"><span class="label">Methods</span><span class="value">Audit · Tokens · WCAG</span></div>
       </div>
       <div class="cs-impact-callout reveal">
-        <strong>WCAG AA</strong>
-        Every screen audited and brought into compliance — zero contrast failures post-launch.
+        <strong>+26 pts</strong>
+        Tap accuracy climbed from 68% to 94%.
       </div>
       <div class="cs-impact-callout reveal" style="margin-top:12px; border-color:rgba(94,122,106,0.3); background:rgba(94,122,106,0.08); color:#5e7a6a;">
         <strong>↗ Shipped</strong>
@@ -81,7 +69,7 @@
         <div class="cs-section-num">01 — About the app</div>
         <div class="cs-section-title">What is Project Relate?</div>
         <div class="cs-section-body">
-          Project Relate is a machine-learning app that helps people with atypical speech communicate independently — including with Google Assistant.
+          Project Relate is a machine-learning app that helps people with atypical speech communicate independently, including with Google Assistant.
         </div>
       </div>
 
@@ -89,50 +77,69 @@
         <div class="cs-section-num">02 — Problem</div>
         <div class="cs-section-title">An eng-driven app without visual cohesion</div>
         <div class="cs-section-body">
-          Relate lacked dedicated UI support. The interface felt outdated and unlike a modern Android app — weak recognition, inconsistent visuals, and an accessibility product that wasn’t meeting modern accessibility standards.
+          Relate lacked dedicated UI support. The interface felt outdated and unlike a modern Android app, with weak recognition, inconsistent visuals, and an accessibility product that wasn’t meeting the needs of its motor impaired user.
         </div>
         <ul class="cs-list">
-          <li>Improve the interface so controls are easier to recognize</li>
-          <li>Unblock marketing so the product could scale</li>
+          <li>Optimize the recording experience to cut down mobile user effort for motor-impaired users</li>
         </ul>
       </div>
 
       <div class="cs-section">
-        <div class="cs-section-num">03 — Audit</div>
-        <div class="cs-section-title">Addressing usability with a product audit</div>
-        <div class="cs-section-body">
-          I ran a product audit on visual aesthetics and proposed design solutions before migrating the system.
-        </div>
-        <div class="cs-media">
-          <img src="https://framerusercontent.com/images/hwVCLOm3QkN0vwo4vpp5qZ5sLo.png" alt="Product audit and heuristic findings" loading="lazy">
-          <div class="cs-media-caption">Product audit — visual and usability gaps.</div>
-        </div>
-        <div class="cs-media" style="margin-top:16px;">
-          <img src="https://framerusercontent.com/images/D7uZqtQPXsY5YkoFSuiShTnaCs.png" alt="Annotated UI callouts on recording screen" loading="lazy">
-          <div class="cs-media-caption">Annotated screen — where recognition and control broke down.</div>
-        </div>
-      </div>
-
-      <div class="cs-section">
-        <div class="cs-section-num">04 — Pain points</div>
+        <div class="cs-section-num">03 — Pain points</div>
         <div class="cs-section-title">Users couldn’t read the interface</div>
         <div class="cs-section-body">
           Users struggled to understand buttons and icons because of size, placement, and unclear function.
         </div>
-        <div class="cs-media-grid">
-          <div class="cs-media">
-            <img src="https://framerusercontent.com/images/OCwxvDEaS5HyBbG0n9Wf8W8r5SM.png" alt="Usability pain points list" loading="lazy">
-            <div class="cs-media-caption">Key usability fails</div>
+        <div class="cs-viz" aria-label="User feedback log">
+          <div class="cs-viz-top">
+            <span>PROJECT_RELATE // USER_FEEDBACK.LOG</span>
+            <span class="cs-viz-sev">SEV: HIGH · 04 ENTRIES</span>
           </div>
-          <div class="cs-media">
-            <img src="https://framerusercontent.com/images/q1KBrp1mNMiWbQ4OYewt5NxDbJg.png" alt="User feedback on buttons and icons" loading="lazy">
-            <div class="cs-media-caption">User feedback synthesis</div>
+          <div class="cs-viz-title">Problems<span class="cs-viz-cursor" aria-hidden="true"></span></div>
+          <div class="cs-viz-sub">&gt; unresolved · awaiting triage</div>
+          <div class="cs-err-grid">
+            <article class="cs-err">
+              <div class="cs-err-chrome">
+                <span>ERR_01 / REACH</span>
+                <span class="window-controls">— □ ×</span>
+              </div>
+              <p class="cs-err-quote">“Some of the controls are just <span class="cs-err-hl">out of reach</span>. I can’t stretch my thumb that far.”</p>
+            </article>
+            <article class="cs-err">
+              <div class="cs-err-chrome">
+                <span>ERR_02 / RECOGNITION</span>
+                <span class="window-controls">— □ ×</span>
+              </div>
+              <p class="cs-err-quote">“All the feature pages <span class="cs-err-hl">look the same</span>, I can’t tell what any of them actually do until I tap in and find out.”</p>
+            </article>
+            <article class="cs-err is-featured">
+              <div class="cs-err-chrome">
+                <span>ERR_03 / TOUCH TARGETS</span>
+                <span class="window-controls">— □ ×</span>
+              </div>
+              <p class="cs-err-quote">“Little icons are <span class="cs-err-hl">terrible</span>. All buttons need to be <span class="cs-err-hl">bigger</span>.”</p>
+              <div class="cs-err-actions">
+                <span class="cs-err-btn is-ghost">Ignore</span>
+                <span class="cs-err-btn is-solid">Solve</span>
+              </div>
+            </article>
+            <article class="cs-err">
+              <div class="cs-err-chrome">
+                <span>ERR_04 / FATIGUE</span>
+                <span class="window-controls">— □ ×</span>
+              </div>
+              <p class="cs-err-quote">“There’s <span class="cs-err-hl">so much to record</span>, my hand gives out before I’m even halfway done.”</p>
+            </article>
+          </div>
+          <div class="cs-viz-foot">
+            <span>USABILITY_REVIEW_V1 · 2026</span>
+            <span class="cs-viz-actions">[ IGNORE ] [ SOLVE ]</span>
           </div>
         </div>
       </div>
 
       <div class="cs-section">
-        <div class="cs-section-num">05 — Approach</div>
+        <div class="cs-section-num">04 — Approach</div>
         <div class="cs-section-title">How we addressed the pain points</div>
         <ul class="cs-list">
           <li>Migrate to the current Google design system</li>
@@ -141,102 +148,197 @@
         <div class="cs-section-body" style="margin-top:20px;">
           The solution: adopt <strong>Material 3</strong> for a cohesive Android look and feel, then create <strong>custom sizes</strong> so the system stayed accessible for motor, cognitive, and low-vision users.
         </div>
-        <div class="cs-media">
+        <div class="cs-viz cs-viz--reach" aria-label="Ergonomic thumb-zone map">
+          <div class="cs-viz-top">
+            <span>PROJECT_RELATE // ERGONOMIC_MAP</span>
+            <span class="cs-viz-sev">RIGHT HAND · SINGLE GRIP</span>
+          </div>
+          <div class="cs-viz-title">Reach is <em>not optional</em><span class="cs-viz-cursor" aria-hidden="true"></span></div>
+          <div class="cs-viz-sub">&gt; move critical controls into the thumb zone</div>
+          <div class="cs-reach">
+            <div class="cs-reach-map">
+              <div class="cs-reach-phone" aria-hidden="true">
+                <div class="cs-reach-dead">
+                  <b>Dead zone</b>
+                  <span>buttons live here today → move them</span>
+                </div>
+                <div class="cs-reach-arc"></div>
+                <div class="cs-reach-thumb">
+                  <b>Thumb zone</b>
+                  <div class="cs-reach-btns">
+                    <span class="cs-reach-record">Record</span>
+                    <span class="cs-reach-mini"></span>
+                  </div>
+                </div>
+              </div>
+              <div class="cs-reach-legend">
+                <span class="is-ok">Reachable</span>
+                <span class="is-hot">Strain / stretch</span>
+              </div>
+            </div>
+            <div class="cs-reach-list">
+              <article>
+                <div class="cs-reach-k">01 / Grip</div>
+                <p>Optimize one-hand usage</p>
+              </article>
+              <article>
+                <div class="cs-reach-k">02 / Targets</div>
+                <p>Larger buttons, bigger tap targets</p>
+              </article>
+              <article>
+                <div class="cs-reach-k is-hot">03 / Reach</div>
+                <p>Relocate buttons into the thumb zone</p>
+              </article>
+              <article>
+                <div class="cs-reach-k">04 / Clarity</div>
+                <p>Improve feature recognizability</p>
+              </article>
+            </div>
+          </div>
+          <div class="cs-viz-foot">
+            <span>MOTOR · COGNITIVE · LOW-VISION</span>
+            <span class="cs-viz-actions">[ SOLVE ]</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="cs-section">
+        <div class="cs-section-num">05 — System shift</div>
+        <div class="cs-section-title">Material 2 → Material 3</div>
+        <div class="cs-section-body">
+          Moving from Material 2 to Material 3 brought Relate in line with modern Android patterns while keeping room to customize for the audience.
+        </div>
+        <div class="cs-viz" aria-label="Material 2 to Material 3 comparison">
+          <div class="cs-viz-top">
+            <span>PROJECT_RELATE // SYSTEM_SHIFT</span>
+            <span class="cs-viz-sev">M2 → M3</span>
+          </div>
+          <div class="cs-viz-title">Before / after<span class="cs-viz-cursor" aria-hidden="true"></span></div>
+          <div class="cs-viz-sub">&gt; same screen · new system</div>
+          <div class="cs-shift">
+            <article class="cs-shift-phone">
+              <div class="cs-err-chrome">
+                <span>BEFORE / MATERIAL 2</span>
+                <span class="window-controls">— □ ×</span>
+              </div>
+              <img src="images/relate-m2-record.png" alt="Material 2 Record screen with reach and tap-target issues" loading="lazy">
+            </article>
+            <div class="cs-shift-arrow" aria-hidden="true">→</div>
+            <article class="cs-shift-phone is-after">
+              <div class="cs-err-chrome">
+                <span>AFTER / MATERIAL 3</span>
+                <span class="window-controls">— □ ×</span>
+              </div>
+              <img src="images/relate-m3-record.png" alt="Material 3 Record screen with bottom-friendly controls and larger tap targets" loading="lazy">
+            </article>
+          </div>
+          <div class="cs-viz-foot">
+            <span>DESIGN_SYSTEM · ANDROID</span>
+            <span class="cs-viz-actions">[ ADOPTED ]</span>
+          </div>
+        </div>
+        <div class="cs-media cs-media--viz">
           <img src="https://framerusercontent.com/images/b4RC5oQBhIzz8P7lJGuu0ILI4c.jpg" alt="Material 3 component exploration" loading="lazy">
           <div class="cs-media-caption">Material 3 adoption with accessibility-minded customization.</div>
         </div>
       </div>
 
       <div class="cs-section">
-        <div class="cs-section-num">06 — System shift</div>
-        <div class="cs-section-title">Material 2 → Material 3</div>
-        <div class="cs-section-body">
-          Moving from Material 2 to Material 3 brought Relate in line with modern Android patterns while keeping room to customize for the audience.
-        </div>
-        <div class="cs-media-grid">
-          <div class="cs-media">
-            <img src="https://framerusercontent.com/images/DLKn1CHtxizBkMZ3q8wnN8mLU.png" alt="Google Material 2 screen" loading="lazy">
-            <div class="cs-media-caption">Google Material 2</div>
-          </div>
-          <div class="cs-media">
-            <img src="https://framerusercontent.com/images/AgyCQhUBezmJ6eZ4gVQxOO6fHk.png" alt="Google Material 3 screen" loading="lazy">
-            <div class="cs-media-caption">Google Material 3</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="cs-section">
-        <div class="cs-section-num">07 — Components</div>
+        <div class="cs-section-num">06 — Components</div>
         <div class="cs-section-title">Custom components for real users</div>
         <div class="cs-section-body">
           Default Android buttons weren’t sized for this audience. Relate components were enlarged and retuned so primary actions were easier to hit and understand.
         </div>
-        <div class="cs-media-grid">
+        <div class="cs-media-grid cs-media-grid--specs">
           <div class="cs-media">
-            <img src="https://framerusercontent.com/images/6C4mmTgIQDwUeYrqB08Gox2cfU8.png" alt="Android button component specs" loading="lazy">
-            <div class="cs-media-caption">Android button component</div>
+            <img src="images/relate-large-button.png" alt="Large Relate Button specs — 320 by 76" loading="lazy">
+            <div class="cs-media-caption">Large Relate Button</div>
           </div>
           <div class="cs-media">
-            <img src="https://framerusercontent.com/images/BKa9XCiVWO0aYndJZGLEAQyhU.png" alt="Relate button component specs" loading="lazy">
-            <div class="cs-media-caption">Relate button component</div>
+            <img src="images/relate-small-button.png" alt="Small Relate Button specs — 106 by 56" loading="lazy">
+            <div class="cs-media-caption">Small Relate Button</div>
           </div>
         </div>
-        <div class="cs-media" style="margin-top:16px;">
-          <img src="https://framerusercontent.com/images/FjRzFRqv732JqExCAR3fzvt5U.png" alt="New component library" loading="lazy">
-          <div class="cs-media-caption">Component library — source of truth for handoff.</div>
-        </div>
       </div>
 
       <div class="cs-section">
-        <div class="cs-section-num">08 — Motion</div>
-        <div class="cs-section-title">Feedback you can see</div>
+        <div class="cs-section-num">07 — Cognitive users</div>
+        <div class="cs-section-title">Better understanding for cognitive users</div>
         <div class="cs-section-body">
-          Motion confirmed actions instead of decorating them — clearer state changes for users who need stronger visual feedback.
+          Listen, Repeat, and Assistant all looked the same, so users with cognitive impairments couldn’t tell what any destination did until they tapped in. Distinct illustrations and a clear purpose on each screen made the features recognizable at a glance.
         </div>
-        <div class="cs-media">
-          <img src="https://framerusercontent.com/images/WxwY5Lhyz8Dx0DI7twC9ruaS4K4.gif" alt="Component state animation" loading="lazy">
-          <div class="cs-media-caption">Component states — press, active, confirmation.</div>
+        <div class="cs-media cs-media--viz">
+          <img src="images/relate-cognitive-m2.png" alt="Material 2 Listen, Repeat, and Assistant screens with no visual difference between features" loading="lazy">
+          <div class="cs-media-caption">Before — no visual difference between features</div>
+        </div>
+        <div class="cs-media cs-media--viz" style="margin-top:16px;">
+          <img src="images/relate-cognitive-m3.png" alt="Material 3 Listen, Repeat, and Assistant screens with distinct illustrations" loading="lazy">
+          <div class="cs-media-caption">After — easier identification of features</div>
         </div>
       </div>
 
       <div class="cs-section">
-        <div class="cs-section-num">09 — Shipped system</div>
-        <div class="cs-section-title">A cohesive Relate experience</div>
+        <div class="cs-section-num">08 — Results</div>
+        <div class="cs-section-title">Larger targets, fewer missed taps</div>
         <div class="cs-section-body">
-          The redesign brought the full app surface into a consistent visual language — familiar to Android users, tuned for accessibility.
+          Relocating controls into the thumb zone and enlarging tap targets made primary actions easier to hit for motor-impaired users.
         </div>
-        <div class="cs-media">
-          <img src="https://framerusercontent.com/images/lMuiUrFCgjDmVa8p7XbPkkDFE.png" alt="Full redesigned Project Relate app" loading="lazy">
-          <div class="cs-media-caption">Redesigned app screens.</div>
+        <div class="cs-viz" aria-label="Tap accuracy results">
+          <div class="cs-viz-top">
+            <span>METRIC_01 // TAP_ACCURACY_RATE</span>
+            <span class="cs-viz-sev">POST-REDESIGN</span>
+          </div>
+          <div class="cs-delta">
+            <div class="cs-delta-k">Delta</div>
+            <div class="cs-delta-row">
+              <div class="cs-scan">+26</div>
+              <div class="cs-delta-unit">Percentage<br>points</div>
+            </div>
+            <p class="cs-delta-copy">Tap accuracy climbed from <span class="is-hot">68%</span> to <strong>94%</strong>.</p>
+          </div>
+          <div class="cs-delta-grid">
+            <article class="cs-delta-card is-before">
+              <div class="cs-delta-card-k">Before</div>
+              <div class="cs-scan">68%</div>
+              <div class="cs-delta-bar" aria-hidden="true"><i style="width:68%"></i></div>
+              <p>32% mis-tap rate</p>
+              <p class="cs-delta-quote">“I keep missing them”</p>
+            </article>
+            <article class="cs-delta-card is-after">
+              <div class="cs-delta-card-k">After</div>
+              <div class="cs-scan">94%</div>
+              <div class="cs-delta-bar" aria-hidden="true"><i style="width:94%"></i></div>
+              <p>6% mis-tap rate</p>
+              <p class="cs-delta-quote">larger targets, thumb reach</p>
+            </article>
+          </div>
+          <div class="cs-viz-foot">
+            <span>&gt; cause: enlarged touch targets + controls relocated within thumb reach</span>
+            <span class="cs-viz-actions">[ SOLVED ]</span>
+          </div>
         </div>
       </div>
 
       <div class="cs-section">
-        <div class="cs-section-num">10 — Impact</div>
+        <div class="cs-section-num">09 — Impact</div>
         <div class="cs-section-title">Unblocking marketing and new markets</div>
         <div class="cs-section-body">
-          A familiar Android interface made scaling easier — including expansion efforts tied to Ghana. Featured in Google I/O’s Accessibility segment (May 2024).
+          A familiar Android interface made scaling easier, including expansion efforts tied to Ghana. Featured in Google I/O’s Accessibility segment (May 2024). Collaboration with a brand studio produced a new tutorial video that used the refreshed system to improve onboarding and overall usability.
         </div>
-        <div class="cs-media">
-          <img src="https://framerusercontent.com/images/OvKGb5Nq9Vn6VjkOFlvmJVq6Qw.png" alt="Google Africa Blog featuring AI work in Ghana" loading="lazy">
-          <div class="cs-media-caption">Marketing in Ghana — scalable, familiar Android patterns.</div>
-        </div>
-      </div>
-
-      <div class="cs-section">
-        <div class="cs-section-num">11 — Follow-through</div>
-        <div class="cs-section-title">New tutorial video</div>
-        <div class="cs-section-body">
-          Collaboration with a brand studio produced a new tutorial video that used the refreshed system to improve onboarding and overall usability.
-        </div>
-        <div class="cs-media">
-          <img src="https://framerusercontent.com/images/FDbyPiPq7YKhitG43HLsRMZg4.gif" alt="Tutorial video motion from brand collaboration" loading="lazy">
-          <div class="cs-media-caption">Brand studio collaboration — tutorial video.</div>
+        <div class="cs-media-grid cs-media-grid--pair">
+          <div class="cs-media">
+            <img src="https://framerusercontent.com/images/OvKGb5Nq9Vn6VjkOFlvmJVq6Qw.png" alt="Google Africa Blog featuring AI work in Ghana" loading="lazy">
+            <div class="cs-media-caption">Marketing in Ghana — scalable, familiar Android patterns.</div>
+          </div>
+          <div class="cs-media">
+            <img src="https://framerusercontent.com/images/FDbyPiPq7YKhitG43HLsRMZg4.gif" alt="Tutorial video motion from brand collaboration" loading="lazy">
+            <div class="cs-media-caption">Brand studio collaboration — tutorial video.</div>
+          </div>
         </div>
       </div>
 
       <div class="cs-section">
-        <div class="cs-section-num">12 — Next & lessons</div>
+        <div class="cs-section-num">10 — Next & lessons</div>
         <div class="cs-section-title">What follows</div>
         <div class="cs-section-body"><strong>Next steps</strong></div>
         <ul class="cs-list">
@@ -278,7 +380,6 @@
   <div class="footer-text">New York · Available for freelance & full-time</div>
 </footer>
 
-<script src="case-auth.js"></script>
 <script src="script.js"></script>
 </body>
 </html>

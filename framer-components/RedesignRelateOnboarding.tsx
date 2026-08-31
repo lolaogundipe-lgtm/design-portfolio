@@ -1059,7 +1059,7 @@ footer {
   min-width: 0;
 }
 .cs-err:nth-child(2) { margin-top: 22px; }
-.cs-err:nth-child(3) {
+.cs-err.is-featured {
   grid-column: 1 / -1;
   box-shadow: 5px 5px 0 var(--accent-hot);
 }
@@ -1870,7 +1870,7 @@ const BODY_HTML = `<div id="cursor"></div>
           <div class="cs-viz" aria-label="User feedback log">
             <div class="cs-viz-top">
               <span>PROJECT_RELATE // USER_FEEDBACK.LOG</span>
-              <span class="cs-viz-sev">SEV: HIGH · 05 ENTRIES</span>
+              <span class="cs-viz-sev">SEV: HIGH · 04 ENTRIES</span>
             </div>
             <div class="cs-viz-title">Problems<span class="cs-viz-cursor" aria-hidden="true"></span></div>
             <div class="cs-viz-sub">&gt; unresolved · awaiting triage</div>
@@ -1882,16 +1882,9 @@ const BODY_HTML = `<div id="cursor"></div>
                 </div>
                 <p class="cs-err-quote">“It’s a <span class="cs-err-hl">bit unclear</span> what I get after all this work.”</p>
               </article>
-              <article class="cs-err">
+              <article class="cs-err is-featured">
                 <div class="cs-err-chrome">
-                  <span>ERR_02 / TOUCH TARGETS</span>
-                  <span class="window-controls">— □ ×</span>
-                </div>
-                <p class="cs-err-quote">“Little icons are <span class="cs-err-hl">terrible</span>. All buttons need to be <span class="cs-err-hl">bigger</span>.”</p>
-              </article>
-              <article class="cs-err">
-                <div class="cs-err-chrome">
-                  <span>ERR_03 / CONTROLS</span>
+                  <span>ERR_02 / CONTROLS</span>
                   <span class="window-controls">— □ ×</span>
                 </div>
                 <p class="cs-err-quote">“The start and stop button is a bit <span class="cs-err-hl">confusing</span>. I thought I could just keep talking.”</p>
@@ -1902,14 +1895,14 @@ const BODY_HTML = `<div id="cursor"></div>
               </article>
               <article class="cs-err">
                 <div class="cs-err-chrome">
-                  <span>ERR_04 / EXPECTATIONS</span>
+                  <span>ERR_03 / EXPECTATIONS</span>
                   <span class="window-controls">— □ ×</span>
                 </div>
                 <p class="cs-err-quote">“<span class="cs-err-hl">If I knew</span> I had to record 500 to get the feature, I <span class="cs-err-hl">would have done</span> it in one sitting.”</p>
               </article>
               <article class="cs-err">
                 <div class="cs-err-chrome">
-                  <span>ERR_05 / ONBOARDING</span>
+                  <span>ERR_04 / ONBOARDING</span>
                   <span class="window-controls">— □ ×</span>
                 </div>
                 <p class="cs-err-quote">“There were <span class="cs-err-hl">no instructions</span> how to use the app after signing up.”</p>

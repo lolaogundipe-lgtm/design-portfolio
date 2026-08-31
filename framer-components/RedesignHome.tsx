@@ -1265,7 +1265,7 @@ const BODY_HTML = `<div id="cursor"></div>
         <div class="window-copy">
           <div class="project-label">Google · Design Systems · Visual Design</div>
           <h3 class="project-name">Project Relate Visual Re-design</h3>
-          <p class="project-desc">Redesigned and built new accessible components to modernize the user experience of an accessibility app and improve task success rate by 82%.</p>
+          <p class="project-desc">Redesigned and built new components to modernize an accessibility app. Tap accuracy climbed from 68% to 94%.</p>
           <div class="project-tags">
             <span>Design Systems</span>
             <span>Visual</span>

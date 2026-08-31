@@ -1,3 +1,12 @@
+// ── VERCEL ANALYTICS ──────────────────────────────────
+(function initAnalytics() {
+  window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
+  const script = document.createElement('script');
+  script.defer = true;
+  script.src = '/_vercel/insights/script.js';
+  document.head.appendChild(script);
+})();
+
 // ── CURSOR ────────────────────────────────────────────
 (function initCursor(){
   const cursor = document.getElementById('cursor');
@@ -81,7 +90,6 @@
   const map = {
     home: document.getElementById('hero'),
     work: document.getElementById('work'),
-    play: document.getElementById('play'),
     about: document.getElementById('about'),
     skills: document.getElementById('skills')
   };
@@ -105,7 +113,7 @@
 
   window.addEventListener('scroll', () => {
     nav.classList.toggle('scrolled', window.scrollY > 40);
-    const order = ['skills', 'about', 'play', 'work', 'home'];
+    const order = ['skills', 'about', 'work', 'home'];
     for (const key of order) {
       const el = map[key];
       if (!el) continue;

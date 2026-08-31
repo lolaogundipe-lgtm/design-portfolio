@@ -956,6 +956,14 @@ footer {
 .cs-media--wide img {
   max-height: 480px;
 }
+.cs-media.cs-media--viz {
+  max-width: none;
+}
+.cs-media.cs-media--viz img,
+.cs-media.cs-media--viz video {
+  max-height: none;
+  image-rendering: -webkit-optimize-contrast;
+}
 .cs-media--device {
   max-width: 280px;
 }
@@ -989,6 +997,468 @@ footer {
 }
 .cs-media-grid .cs-media { margin-top: 0; max-width: none; }
 .cs-media-grid img { max-height: 340px; }
+.cs-media-grid--specs {
+  grid-template-columns: 1fr 1fr;
+  max-width: none;
+  align-items: stretch;
+}
+.cs-media-grid--specs .cs-media {
+  display: flex;
+  flex-direction: column;
+  background: #ececec;
+}
+.cs-media-grid--specs img {
+  width: 100%;
+  max-height: none;
+  aspect-ratio: 836 / 372;
+  object-fit: contain;
+  object-position: center;
+  background: #ececec;
+}
+.cs-media-grid--pair {
+  grid-template-columns: 1fr 1fr;
+  max-width: none;
+  align-items: stretch;
+}
+.cs-media-grid--pair .cs-media {
+  display: flex;
+  flex-direction: column;
+}
+.cs-media-grid--pair img {
+  width: 100%;
+  flex: 1;
+  max-height: none;
+  object-fit: contain;
+  object-position: center;
+}
+
+/* ─── PROBLEM VIZ PANELS ────────────────────────────── */
+.cs-viz {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  background: var(--bg);
+  padding: 16px 16px 12px;
+}
+.cs-section > .cs-viz {
+  margin-top: 20px;
+}
+.cs-viz::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 50% 40% at 0% 0%, rgba(184,20,20,0.16), transparent 65%),
+    repeating-linear-gradient(0deg, transparent, transparent 11px, rgba(255,255,255,0.035) 11px, rgba(255,255,255,0.035) 12px),
+    repeating-linear-gradient(90deg, transparent, transparent 11px, rgba(255,255,255,0.035) 11px, rgba(255,255,255,0.035) 12px);
+  pointer-events: none;
+}
+.cs-viz > * { position: relative; z-index: 1; }
+.cs-viz-top {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text3);
+  margin-bottom: 16px;
+}
+.cs-viz-sev { color: var(--accent-hot); }
+.cs-viz-title {
+  font-family: var(--font-display);
+  font-size: clamp(28px, 4.2vw, 48px);
+  font-weight: 700;
+  letter-spacing: -0.05em;
+  text-transform: uppercase;
+  line-height: 0.9;
+  color: var(--text);
+  margin-bottom: 8px;
+}
+.cs-viz-cursor {
+  display: inline-block;
+  width: 0.42em;
+  height: 0.78em;
+  margin-left: 6px;
+  background: var(--accent-hot);
+  vertical-align: -0.04em;
+  animation: blink 1.2s steps(1) infinite;
+}
+.cs-viz-sub {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  color: var(--text2);
+  margin-bottom: 22px;
+}
+.cs-viz-foot {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 18px;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text3);
+}
+.cs-viz-actions { color: var(--text2); }
+.cs-err-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+.cs-err {
+  border: 1px solid var(--border);
+  background: var(--bg);
+  min-width: 0;
+}
+.cs-err.is-featured {
+  grid-column: 1 / -1;
+  box-shadow: 4px 4px 0 var(--accent-hot);
+}
+.cs-err-chrome {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--text);
+  color: var(--bg);
+  padding: 8px 12px;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+.cs-err-quote {
+  font-family: var(--font-body);
+  font-size: 14px;
+  line-height: 1.4;
+  color: var(--text);
+  padding: 12px 14px 14px;
+}
+.cs-err-hl { color: var(--accent-hot); font-weight: 600; }
+.cs-err-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  padding: 0 16px 16px;
+}
+.cs-err-btn {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 8px 12px;
+  border: 1px solid var(--text);
+}
+.cs-err-btn.is-ghost { color: var(--text); background: transparent; }
+.cs-err-btn.is-solid { color: var(--bg); background: var(--text); }
+.cs-shift {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  gap: 12px;
+  align-items: start;
+}
+.cs-shift-phone {
+  border: 1px solid var(--border);
+  background: var(--surface);
+  min-width: 0;
+}
+.cs-shift-phone.is-after {
+  box-shadow: 4px 4px 0 var(--accent-hot);
+}
+.cs-shift-phone img {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: 560px;
+  object-fit: contain;
+  object-position: top center;
+  background: var(--bg);
+}
+.cs-shift-arrow {
+  align-self: center;
+  font-family: var(--font-mono);
+  font-size: 22px;
+  line-height: 1;
+  color: var(--accent-hot);
+}
+.cs-reach {
+  display: grid;
+  grid-template-columns: 150px minmax(0, 1fr);
+  gap: 16px 24px;
+  align-items: stretch;
+  margin: 8px 0 4px;
+}
+.cs-viz--reach {
+  max-width: 640px;
+}
+.cs-viz--reach .cs-viz-title {
+  font-size: clamp(20px, 2.4vw, 28px);
+}
+.cs-delta { margin: 4px 0 18px; }
+.cs-delta-k {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text3);
+  margin-bottom: 6px;
+}
+.cs-delta-row {
+  display: flex;
+  align-items: flex-end;
+  gap: 14px;
+}
+.cs-scan {
+  position: relative;
+  font-family: var(--font-display);
+  font-size: clamp(56px, 9vw, 96px);
+  font-weight: 700;
+  letter-spacing: -0.07em;
+  line-height: 0.85;
+  color: var(--text);
+}
+.cs-scan::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(0deg, transparent 0 3px, rgba(0,0,0,0.38) 3px 4px);
+  pointer-events: none;
+}
+.cs-delta-unit {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text2);
+  padding-bottom: 6px;
+  line-height: 1.25;
+}
+.cs-delta-copy {
+  margin-top: 12px;
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.45;
+  color: var(--text2);
+}
+.cs-delta-copy .is-hot { color: var(--accent-hot); font-weight: 600; }
+.cs-delta-copy strong { color: var(--text); font-family: var(--font-display); font-size: 14px; }
+.cs-delta-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+.cs-delta-card {
+  border: 1px solid var(--border);
+  padding: 14px 16px 16px;
+  background: var(--bg);
+}
+.cs-delta-card.is-before { border-color: var(--accent-hot); }
+.cs-delta-card-k {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text3);
+  margin-bottom: 8px;
+}
+.cs-delta-card.is-before .cs-delta-card-k,
+.cs-delta-card.is-before .cs-scan { color: var(--accent-hot); }
+.cs-delta-card .cs-scan { font-size: clamp(36px, 5vw, 52px); }
+.cs-delta-bar {
+  height: 10px;
+  margin: 12px 0 10px;
+  border: 1px solid var(--border-dim);
+  background: var(--bg);
+}
+.cs-delta-bar i {
+  display: block;
+  height: 100%;
+  background: var(--text);
+}
+.cs-delta-card.is-before .cs-delta-bar i { background: var(--accent-hot); }
+.cs-delta-card p {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--text2);
+  line-height: 1.4;
+}
+.cs-delta-quote { margin-top: 4px; color: var(--text3); text-transform: none; letter-spacing: 0; }
+.cs-viz-title em {
+  font-style: normal;
+  color: var(--accent-hot);
+}
+.cs-reach-map {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.cs-reach-phone {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 9 / 18;
+  border: 1px solid var(--border);
+  border-radius: 22px;
+  background:
+    repeating-linear-gradient(0deg, transparent, transparent 7px, rgba(255,255,255,0.04) 7px, rgba(255,255,255,0.04) 8px),
+    var(--bg);
+}
+.cs-reach-dead,
+.cs-reach-thumb {
+  position: absolute;
+  left: 0;
+  right: 0;
+  display: flex;
+  flex-direction: column;
+  padding: 10px 12px;
+  z-index: 1;
+}
+.cs-reach-dead {
+  top: 0;
+  height: 36%;
+  background: repeating-linear-gradient(
+    -45deg,
+    transparent 0 5px,
+    rgba(184,20,20,0.55) 5px 7px
+  );
+  color: var(--accent-hot);
+}
+.cs-reach-thumb {
+  bottom: 0;
+  height: 42%;
+  justify-content: flex-end;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent 0 5px,
+    rgba(255,255,255,0.08) 5px 6px
+  );
+  color: var(--text);
+}
+.cs-reach-dead b,
+.cs-reach-thumb b {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  font-weight: 400;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+.cs-reach-dead span {
+  margin-top: 6px;
+  font-family: var(--font-mono);
+  font-size: 8px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  line-height: 1.35;
+  max-width: 16ch;
+}
+.cs-reach-arc {
+  position: absolute;
+  width: 220%;
+  height: 110%;
+  right: -18%;
+  bottom: -12%;
+  border: 1px dashed rgba(255,255,255,0.45);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 2;
+}
+.cs-reach-btns {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 10px;
+}
+.cs-reach-record {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 36px;
+  border: 1px solid var(--text);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text);
+}
+.cs-reach-mini {
+  width: 36px;
+  height: 36px;
+  flex: 0 0 36px;
+  border: 1px solid var(--text);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-mono);
+  font-size: 16px;
+  line-height: 1;
+}
+.cs-reach-mini::before { content: '↻'; }
+.cs-reach-legend {
+  display: flex;
+  gap: 16px;
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text3);
+}
+.cs-reach-legend span {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.cs-reach-legend span::before {
+  content: '';
+  width: 14px;
+  height: 10px;
+  border: 1px solid var(--border);
+}
+.cs-reach-legend .is-ok::before {
+  background: repeating-linear-gradient(0deg, transparent 0 2px, rgba(255,255,255,0.7) 2px 3px);
+}
+.cs-reach-legend .is-hot {
+  color: var(--accent-hot);
+}
+.cs-reach-legend .is-hot::before {
+  border-color: var(--accent-hot);
+  background: repeating-linear-gradient(-45deg, transparent 0 3px, rgba(184,20,20,0.85) 3px 5px);
+}
+.cs-reach-list {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 0;
+  border-left: 1px solid var(--border);
+  padding: 4px 0 4px 24px;
+  min-height: 0;
+}
+.cs-reach-list article {
+  padding: 10px 0 14px;
+  border-bottom: 1px solid var(--border-dim);
+}
+.cs-reach-list article:last-child { border-bottom: none; padding-bottom: 0; }
+.cs-reach-k {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text3);
+  margin-bottom: 6px;
+}
+.cs-reach-k.is-hot { color: var(--accent-hot); }
+.cs-reach-list p {
+  font-family: var(--font-body);
+  font-size: 16px;
+  font-weight: 500;
+  letter-spacing: -0.03em;
+  line-height: 1.25;
+  color: var(--text);
+}
 .cs-media-row {
   display: flex;
   flex-wrap: wrap;
@@ -1165,6 +1635,22 @@ a { cursor: none; }
   .skill-block { border-right: none !important; border-bottom: 1px solid var(--border-dim) !important; }
   .skill-block:last-child { border-bottom: none !important; }
   .cs-media-grid { grid-template-columns: 1fr; }
+  .cs-err-grid { grid-template-columns: 1fr; }
+  .cs-delta-grid { grid-template-columns: 1fr; }
+  .cs-shift { grid-template-columns: 1fr; }
+  .cs-shift-arrow {
+    justify-self: center;
+    transform: rotate(90deg);
+  }
+  .cs-reach {
+    grid-template-columns: 1fr;
+  }
+  .cs-reach-phone { max-width: 220px; }
+  .cs-reach-list {
+    border-left: none;
+    border-top: 1px solid var(--border);
+    padding: 16px 0 0;
+  }
   .cs-media, .cs-media--wide { max-width: 100%; }
   .cs-media-row { flex-direction: column; }
   .cs-media--device { max-width: 220px; }
@@ -1198,18 +1684,15 @@ const BODY_HTML = `<div id="cursor"></div>
 </nav>
 
 <!-- PAGE HEADER -->
-<header class="cs-page-header">
+<header class="cs-page-header cs-wide-copy">
   <a href="/#work" class="cs-back-link">← Back to work</a>
   <div class="cs-eyebrow">Case study 02 · Google · Design Systems</div>
   <h1 class="cs-page-title">Project Relate<br>Visual Re-design</h1>
-  <p class="cs-page-sub">Overhauling the visual system of an accessibility app — bringing Material 3 to Project Relate while custom-tuning components for users with motor, cognitive, and low-vision needs.</p>
-  <div class="cs-hero-image">
-    <img src="https://framerusercontent.com/images/duim7aAt87vcK95OLoa945jSp8.png" alt="Project Relate visual redesign hero">
-  </div>
+  <p class="cs-page-sub">Overhauling the visual system of an accessibility app by bringing Material 3 to Project Relate while custom-tuning components for users with motor, cognitive, and low-vision needs.</p>
 </header>
 
 <!-- CASE STUDY BODY -->
-<section class="cs-page">
+<section class="cs-page cs-wide-copy">
   <div class="cs-grid">
 
     <aside class="cs-sticky">
@@ -1222,8 +1705,8 @@ const BODY_HTML = `<div id="cursor"></div>
         <div class="cs-meta-row"><span class="label">Methods</span><span class="value">Audit · Tokens · WCAG</span></div>
       </div>
       <div class="cs-impact-callout reveal">
-        <strong>WCAG AA</strong>
-        Every screen audited and brought into compliance — zero contrast failures post-launch.
+        <strong>+26 pts</strong>
+        Tap accuracy climbed from 68% to 94%.
       </div>
       <div class="cs-impact-callout reveal" style="margin-top:12px; border-color:rgba(94,122,106,0.3); background:rgba(94,122,106,0.08); color:#5e7a6a;">
         <strong>↗ Shipped</strong>
@@ -1237,7 +1720,7 @@ const BODY_HTML = `<div id="cursor"></div>
         <div class="cs-section-num">01 — About the app</div>
         <div class="cs-section-title">What is Project Relate?</div>
         <div class="cs-section-body">
-          Project Relate is a machine-learning app that helps people with atypical speech communicate independently — including with Google Assistant.
+          Project Relate is a machine-learning app that helps people with atypical speech communicate independently, including with Google Assistant.
         </div>
       </div>
 
@@ -1245,50 +1728,69 @@ const BODY_HTML = `<div id="cursor"></div>
         <div class="cs-section-num">02 — Problem</div>
         <div class="cs-section-title">An eng-driven app without visual cohesion</div>
         <div class="cs-section-body">
-          Relate lacked dedicated UI support. The interface felt outdated and unlike a modern Android app — weak recognition, inconsistent visuals, and an accessibility product that wasn’t meeting modern accessibility standards.
+          Relate lacked dedicated UI support. The interface felt outdated and unlike a modern Android app, with weak recognition, inconsistent visuals, and an accessibility product that wasn’t meeting the needs of its motor impaired user.
         </div>
         <ul class="cs-list">
-          <li>Improve the interface so controls are easier to recognize</li>
-          <li>Unblock marketing so the product could scale</li>
+          <li>Optimize the recording experience to cut down mobile user effort for motor-impaired users</li>
         </ul>
       </div>
 
       <div class="cs-section">
-        <div class="cs-section-num">03 — Audit</div>
-        <div class="cs-section-title">Addressing usability with a product audit</div>
-        <div class="cs-section-body">
-          I ran a product audit on visual aesthetics and proposed design solutions before migrating the system.
-        </div>
-        <div class="cs-media">
-          <img src="https://framerusercontent.com/images/hwVCLOm3QkN0vwo4vpp5qZ5sLo.png" alt="Product audit and heuristic findings" loading="lazy">
-          <div class="cs-media-caption">Product audit — visual and usability gaps.</div>
-        </div>
-        <div class="cs-media" style="margin-top:16px;">
-          <img src="https://framerusercontent.com/images/D7uZqtQPXsY5YkoFSuiShTnaCs.png" alt="Annotated UI callouts on recording screen" loading="lazy">
-          <div class="cs-media-caption">Annotated screen — where recognition and control broke down.</div>
-        </div>
-      </div>
-
-      <div class="cs-section">
-        <div class="cs-section-num">04 — Pain points</div>
+        <div class="cs-section-num">03 — Pain points</div>
         <div class="cs-section-title">Users couldn’t read the interface</div>
         <div class="cs-section-body">
           Users struggled to understand buttons and icons because of size, placement, and unclear function.
         </div>
-        <div class="cs-media-grid">
-          <div class="cs-media">
-            <img src="https://framerusercontent.com/images/OCwxvDEaS5HyBbG0n9Wf8W8r5SM.png" alt="Usability pain points list" loading="lazy">
-            <div class="cs-media-caption">Key usability fails</div>
+        <div class="cs-viz" aria-label="User feedback log">
+          <div class="cs-viz-top">
+            <span>PROJECT_RELATE // USER_FEEDBACK.LOG</span>
+            <span class="cs-viz-sev">SEV: HIGH · 04 ENTRIES</span>
           </div>
-          <div class="cs-media">
-            <img src="https://framerusercontent.com/images/q1KBrp1mNMiWbQ4OYewt5NxDbJg.png" alt="User feedback on buttons and icons" loading="lazy">
-            <div class="cs-media-caption">User feedback synthesis</div>
+          <div class="cs-viz-title">Problems<span class="cs-viz-cursor" aria-hidden="true"></span></div>
+          <div class="cs-viz-sub">&gt; unresolved · awaiting triage</div>
+          <div class="cs-err-grid">
+            <article class="cs-err">
+              <div class="cs-err-chrome">
+                <span>ERR_01 / REACH</span>
+                <span class="window-controls">— □ ×</span>
+              </div>
+              <p class="cs-err-quote">“Some of the controls are just <span class="cs-err-hl">out of reach</span>. I can’t stretch my thumb that far.”</p>
+            </article>
+            <article class="cs-err">
+              <div class="cs-err-chrome">
+                <span>ERR_02 / RECOGNITION</span>
+                <span class="window-controls">— □ ×</span>
+              </div>
+              <p class="cs-err-quote">“All the feature pages <span class="cs-err-hl">look the same</span>, I can’t tell what any of them actually do until I tap in and find out.”</p>
+            </article>
+            <article class="cs-err is-featured">
+              <div class="cs-err-chrome">
+                <span>ERR_03 / TOUCH TARGETS</span>
+                <span class="window-controls">— □ ×</span>
+              </div>
+              <p class="cs-err-quote">“Little icons are <span class="cs-err-hl">terrible</span>. All buttons need to be <span class="cs-err-hl">bigger</span>.”</p>
+              <div class="cs-err-actions">
+                <span class="cs-err-btn is-ghost">Ignore</span>
+                <span class="cs-err-btn is-solid">Solve</span>
+              </div>
+            </article>
+            <article class="cs-err">
+              <div class="cs-err-chrome">
+                <span>ERR_04 / FATIGUE</span>
+                <span class="window-controls">— □ ×</span>
+              </div>
+              <p class="cs-err-quote">“There’s <span class="cs-err-hl">so much to record</span>, my hand gives out before I’m even halfway done.”</p>
+            </article>
+          </div>
+          <div class="cs-viz-foot">
+            <span>USABILITY_REVIEW_V1 · 2026</span>
+            <span class="cs-viz-actions">[ IGNORE ] [ SOLVE ]</span>
           </div>
         </div>
       </div>
 
       <div class="cs-section">
-        <div class="cs-section-num">05 — Approach</div>
+        <div class="cs-section-num">04 — Approach</div>
         <div class="cs-section-title">How we addressed the pain points</div>
         <ul class="cs-list">
           <li>Migrate to the current Google design system</li>
@@ -1297,102 +1799,197 @@ const BODY_HTML = `<div id="cursor"></div>
         <div class="cs-section-body" style="margin-top:20px;">
           The solution: adopt <strong>Material 3</strong> for a cohesive Android look and feel, then create <strong>custom sizes</strong> so the system stayed accessible for motor, cognitive, and low-vision users.
         </div>
-        <div class="cs-media">
+        <div class="cs-viz cs-viz--reach" aria-label="Ergonomic thumb-zone map">
+          <div class="cs-viz-top">
+            <span>PROJECT_RELATE // ERGONOMIC_MAP</span>
+            <span class="cs-viz-sev">RIGHT HAND · SINGLE GRIP</span>
+          </div>
+          <div class="cs-viz-title">Reach is <em>not optional</em><span class="cs-viz-cursor" aria-hidden="true"></span></div>
+          <div class="cs-viz-sub">&gt; move critical controls into the thumb zone</div>
+          <div class="cs-reach">
+            <div class="cs-reach-map">
+              <div class="cs-reach-phone" aria-hidden="true">
+                <div class="cs-reach-dead">
+                  <b>Dead zone</b>
+                  <span>buttons live here today → move them</span>
+                </div>
+                <div class="cs-reach-arc"></div>
+                <div class="cs-reach-thumb">
+                  <b>Thumb zone</b>
+                  <div class="cs-reach-btns">
+                    <span class="cs-reach-record">Record</span>
+                    <span class="cs-reach-mini"></span>
+                  </div>
+                </div>
+              </div>
+              <div class="cs-reach-legend">
+                <span class="is-ok">Reachable</span>
+                <span class="is-hot">Strain / stretch</span>
+              </div>
+            </div>
+            <div class="cs-reach-list">
+              <article>
+                <div class="cs-reach-k">01 / Grip</div>
+                <p>Optimize one-hand usage</p>
+              </article>
+              <article>
+                <div class="cs-reach-k">02 / Targets</div>
+                <p>Larger buttons, bigger tap targets</p>
+              </article>
+              <article>
+                <div class="cs-reach-k is-hot">03 / Reach</div>
+                <p>Relocate buttons into the thumb zone</p>
+              </article>
+              <article>
+                <div class="cs-reach-k">04 / Clarity</div>
+                <p>Improve feature recognizability</p>
+              </article>
+            </div>
+          </div>
+          <div class="cs-viz-foot">
+            <span>MOTOR · COGNITIVE · LOW-VISION</span>
+            <span class="cs-viz-actions">[ SOLVE ]</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="cs-section">
+        <div class="cs-section-num">05 — System shift</div>
+        <div class="cs-section-title">Material 2 → Material 3</div>
+        <div class="cs-section-body">
+          Moving from Material 2 to Material 3 brought Relate in line with modern Android patterns while keeping room to customize for the audience.
+        </div>
+        <div class="cs-viz" aria-label="Material 2 to Material 3 comparison">
+          <div class="cs-viz-top">
+            <span>PROJECT_RELATE // SYSTEM_SHIFT</span>
+            <span class="cs-viz-sev">M2 → M3</span>
+          </div>
+          <div class="cs-viz-title">Before / after<span class="cs-viz-cursor" aria-hidden="true"></span></div>
+          <div class="cs-viz-sub">&gt; same screen · new system</div>
+          <div class="cs-shift">
+            <article class="cs-shift-phone">
+              <div class="cs-err-chrome">
+                <span>BEFORE / MATERIAL 2</span>
+                <span class="window-controls">— □ ×</span>
+              </div>
+              <img src="images/relate-m2-record.png" alt="Material 2 Record screen with reach and tap-target issues" loading="lazy">
+            </article>
+            <div class="cs-shift-arrow" aria-hidden="true">→</div>
+            <article class="cs-shift-phone is-after">
+              <div class="cs-err-chrome">
+                <span>AFTER / MATERIAL 3</span>
+                <span class="window-controls">— □ ×</span>
+              </div>
+              <img src="images/relate-m3-record.png" alt="Material 3 Record screen with bottom-friendly controls and larger tap targets" loading="lazy">
+            </article>
+          </div>
+          <div class="cs-viz-foot">
+            <span>DESIGN_SYSTEM · ANDROID</span>
+            <span class="cs-viz-actions">[ ADOPTED ]</span>
+          </div>
+        </div>
+        <div class="cs-media cs-media--viz">
           <img src="https://framerusercontent.com/images/b4RC5oQBhIzz8P7lJGuu0ILI4c.jpg" alt="Material 3 component exploration" loading="lazy">
           <div class="cs-media-caption">Material 3 adoption with accessibility-minded customization.</div>
         </div>
       </div>
 
       <div class="cs-section">
-        <div class="cs-section-num">06 — System shift</div>
-        <div class="cs-section-title">Material 2 → Material 3</div>
-        <div class="cs-section-body">
-          Moving from Material 2 to Material 3 brought Relate in line with modern Android patterns while keeping room to customize for the audience.
-        </div>
-        <div class="cs-media-grid">
-          <div class="cs-media">
-            <img src="https://framerusercontent.com/images/DLKn1CHtxizBkMZ3q8wnN8mLU.png" alt="Google Material 2 screen" loading="lazy">
-            <div class="cs-media-caption">Google Material 2</div>
-          </div>
-          <div class="cs-media">
-            <img src="https://framerusercontent.com/images/AgyCQhUBezmJ6eZ4gVQxOO6fHk.png" alt="Google Material 3 screen" loading="lazy">
-            <div class="cs-media-caption">Google Material 3</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="cs-section">
-        <div class="cs-section-num">07 — Components</div>
+        <div class="cs-section-num">06 — Components</div>
         <div class="cs-section-title">Custom components for real users</div>
         <div class="cs-section-body">
           Default Android buttons weren’t sized for this audience. Relate components were enlarged and retuned so primary actions were easier to hit and understand.
         </div>
-        <div class="cs-media-grid">
+        <div class="cs-media-grid cs-media-grid--specs">
           <div class="cs-media">
-            <img src="https://framerusercontent.com/images/6C4mmTgIQDwUeYrqB08Gox2cfU8.png" alt="Android button component specs" loading="lazy">
-            <div class="cs-media-caption">Android button component</div>
+            <img src="images/relate-large-button.png" alt="Large Relate Button specs — 320 by 76" loading="lazy">
+            <div class="cs-media-caption">Large Relate Button</div>
           </div>
           <div class="cs-media">
-            <img src="https://framerusercontent.com/images/BKa9XCiVWO0aYndJZGLEAQyhU.png" alt="Relate button component specs" loading="lazy">
-            <div class="cs-media-caption">Relate button component</div>
+            <img src="images/relate-small-button.png" alt="Small Relate Button specs — 106 by 56" loading="lazy">
+            <div class="cs-media-caption">Small Relate Button</div>
           </div>
         </div>
-        <div class="cs-media" style="margin-top:16px;">
-          <img src="https://framerusercontent.com/images/FjRzFRqv732JqExCAR3fzvt5U.png" alt="New component library" loading="lazy">
-          <div class="cs-media-caption">Component library — source of truth for handoff.</div>
-        </div>
       </div>
 
       <div class="cs-section">
-        <div class="cs-section-num">08 — Motion</div>
-        <div class="cs-section-title">Feedback you can see</div>
+        <div class="cs-section-num">07 — Cognitive users</div>
+        <div class="cs-section-title">Better understanding for cognitive users</div>
         <div class="cs-section-body">
-          Motion confirmed actions instead of decorating them — clearer state changes for users who need stronger visual feedback.
+          Listen, Repeat, and Assistant all looked the same, so users with cognitive impairments couldn’t tell what any destination did until they tapped in. Distinct illustrations and a clear purpose on each screen made the features recognizable at a glance.
         </div>
-        <div class="cs-media">
-          <img src="https://framerusercontent.com/images/WxwY5Lhyz8Dx0DI7twC9ruaS4K4.gif" alt="Component state animation" loading="lazy">
-          <div class="cs-media-caption">Component states — press, active, confirmation.</div>
+        <div class="cs-media cs-media--viz">
+          <img src="images/relate-cognitive-m2.png" alt="Material 2 Listen, Repeat, and Assistant screens with no visual difference between features" loading="lazy">
+          <div class="cs-media-caption">Before — no visual difference between features</div>
+        </div>
+        <div class="cs-media cs-media--viz" style="margin-top:16px;">
+          <img src="images/relate-cognitive-m3.png" alt="Material 3 Listen, Repeat, and Assistant screens with distinct illustrations" loading="lazy">
+          <div class="cs-media-caption">After — easier identification of features</div>
         </div>
       </div>
 
       <div class="cs-section">
-        <div class="cs-section-num">09 — Shipped system</div>
-        <div class="cs-section-title">A cohesive Relate experience</div>
+        <div class="cs-section-num">08 — Results</div>
+        <div class="cs-section-title">Larger targets, fewer missed taps</div>
         <div class="cs-section-body">
-          The redesign brought the full app surface into a consistent visual language — familiar to Android users, tuned for accessibility.
+          Relocating controls into the thumb zone and enlarging tap targets made primary actions easier to hit for motor-impaired users.
         </div>
-        <div class="cs-media">
-          <img src="https://framerusercontent.com/images/lMuiUrFCgjDmVa8p7XbPkkDFE.png" alt="Full redesigned Project Relate app" loading="lazy">
-          <div class="cs-media-caption">Redesigned app screens.</div>
+        <div class="cs-viz" aria-label="Tap accuracy results">
+          <div class="cs-viz-top">
+            <span>METRIC_01 // TAP_ACCURACY_RATE</span>
+            <span class="cs-viz-sev">POST-REDESIGN</span>
+          </div>
+          <div class="cs-delta">
+            <div class="cs-delta-k">Delta</div>
+            <div class="cs-delta-row">
+              <div class="cs-scan">+26</div>
+              <div class="cs-delta-unit">Percentage<br>points</div>
+            </div>
+            <p class="cs-delta-copy">Tap accuracy climbed from <span class="is-hot">68%</span> to <strong>94%</strong>.</p>
+          </div>
+          <div class="cs-delta-grid">
+            <article class="cs-delta-card is-before">
+              <div class="cs-delta-card-k">Before</div>
+              <div class="cs-scan">68%</div>
+              <div class="cs-delta-bar" aria-hidden="true"><i style="width:68%"></i></div>
+              <p>32% mis-tap rate</p>
+              <p class="cs-delta-quote">“I keep missing them”</p>
+            </article>
+            <article class="cs-delta-card is-after">
+              <div class="cs-delta-card-k">After</div>
+              <div class="cs-scan">94%</div>
+              <div class="cs-delta-bar" aria-hidden="true"><i style="width:94%"></i></div>
+              <p>6% mis-tap rate</p>
+              <p class="cs-delta-quote">larger targets, thumb reach</p>
+            </article>
+          </div>
+          <div class="cs-viz-foot">
+            <span>&gt; cause: enlarged touch targets + controls relocated within thumb reach</span>
+            <span class="cs-viz-actions">[ SOLVED ]</span>
+          </div>
         </div>
       </div>
 
       <div class="cs-section">
-        <div class="cs-section-num">10 — Impact</div>
+        <div class="cs-section-num">09 — Impact</div>
         <div class="cs-section-title">Unblocking marketing and new markets</div>
         <div class="cs-section-body">
-          A familiar Android interface made scaling easier — including expansion efforts tied to Ghana. Featured in Google I/O’s Accessibility segment (May 2024).
+          A familiar Android interface made scaling easier, including expansion efforts tied to Ghana. Featured in Google I/O’s Accessibility segment (May 2024). Collaboration with a brand studio produced a new tutorial video that used the refreshed system to improve onboarding and overall usability.
         </div>
-        <div class="cs-media">
-          <img src="https://framerusercontent.com/images/OvKGb5Nq9Vn6VjkOFlvmJVq6Qw.png" alt="Google Africa Blog featuring AI work in Ghana" loading="lazy">
-          <div class="cs-media-caption">Marketing in Ghana — scalable, familiar Android patterns.</div>
-        </div>
-      </div>
-
-      <div class="cs-section">
-        <div class="cs-section-num">11 — Follow-through</div>
-        <div class="cs-section-title">New tutorial video</div>
-        <div class="cs-section-body">
-          Collaboration with a brand studio produced a new tutorial video that used the refreshed system to improve onboarding and overall usability.
-        </div>
-        <div class="cs-media">
-          <img src="https://framerusercontent.com/images/FDbyPiPq7YKhitG43HLsRMZg4.gif" alt="Tutorial video motion from brand collaboration" loading="lazy">
-          <div class="cs-media-caption">Brand studio collaboration — tutorial video.</div>
+        <div class="cs-media-grid cs-media-grid--pair">
+          <div class="cs-media">
+            <img src="https://framerusercontent.com/images/OvKGb5Nq9Vn6VjkOFlvmJVq6Qw.png" alt="Google Africa Blog featuring AI work in Ghana" loading="lazy">
+            <div class="cs-media-caption">Marketing in Ghana — scalable, familiar Android patterns.</div>
+          </div>
+          <div class="cs-media">
+            <img src="https://framerusercontent.com/images/FDbyPiPq7YKhitG43HLsRMZg4.gif" alt="Tutorial video motion from brand collaboration" loading="lazy">
+            <div class="cs-media-caption">Brand studio collaboration — tutorial video.</div>
+          </div>
         </div>
       </div>
 
       <div class="cs-section">
-        <div class="cs-section-num">12 — Next & lessons</div>
+        <div class="cs-section-num">10 — Next & lessons</div>
         <div class="cs-section-title">What follows</div>
         <div class="cs-section-body"><strong>Next steps</strong></div>
         <ul class="cs-list">
