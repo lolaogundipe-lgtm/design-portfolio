@@ -9,6 +9,7 @@ export default function RedesignNav(props) {
     const links = [
         { key: "home", href: "/#hero", label: "Home" },
         { key: "work", href: "/#work", label: "Work" },
+        { key: "services", href: "/services", label: "Services" },
         { key: "about", href: "/#about", label: "About" },
         { key: "skills", href: "/#skills", label: "Tools" },
     ]
@@ -107,8 +108,8 @@ addPropertyControls(RedesignNav, {
     active: {
         type: ControlType.Enum,
         title: "Active",
-        options: ["home", "work", "about", "skills"],
-        optionTitles: ["Home", "Work", "About", "Tools"],
+        options: ["home", "work", "services", "about", "skills"],
+        optionTitles: ["Home", "Work", "Services", "About", "Tools"],
         defaultValue: "home",
     },
 })

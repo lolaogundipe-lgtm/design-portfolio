@@ -44,7 +44,7 @@
   }
   animateCursorFollow();
 
-  document.querySelectorAll('.project-window, .project-card, .btn-solid, .btn-ghost, .contact-link, .nav-link, .nav-cta, .cs-back-link, .cs-next, .nav-logo, .cs-gate-submit, .cs-gate-back, .cs-process-cta').forEach(el => {
+  document.querySelectorAll('.project-window, .project-card, .btn-solid, .btn-ghost, .contact-link, .nav-link, .nav-cta, .cs-back-link, .cs-next, .nav-logo, .cs-gate-submit, .cs-gate-back, .cs-process-cta, .svc-stage, .svc-engage, .svc-email, .svc-carousel-btn, .svc-dot').forEach(el => {
     el.addEventListener('mouseenter', () => {
       cursor.classList.add('hover-state');
       if (cursorLabel) {
@@ -292,4 +292,109 @@ function switchTab(btn, id) {
     entries.forEach(e => { e.isIntersecting ? play() : pause(); });
   }, { threshold: 0.35 });
   obs.observe(root);
+})();
+
+// ── SERVICES CAROUSEL ─────────────────────────────────
+(function initSvcCarousel(){
+  const root = document.querySelector('.svc-carousel');
+  if (!root) return;
+
+  const track = root.querySelector('.svc-carousel-track');
+  const slides = [...root.querySelectorAll('.svc-slide')];
+  const dots = [...root.querySelectorAll('.svc-dot')];
+  const status = root.querySelector('.svc-carousel-status');
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let i = 0;
+  let x0 = null;
+
+  function slideWidth() {
+    return root.querySelector('.svc-carousel-viewport').getBoundingClientRect().width;
+  }
+
+  function go(n) {
+    i = (n + slides.length) % slides.length;
+    const w = slideWidth();
+    slides.forEach(slide => { slide.style.width = w + 'px'; });
+    track.style.transition = reduce ? 'none' : '';
+    track.style.transform = 'translate3d(' + (-i * w) + 'px,0,0)';
+    slides.forEach((slide, idx) => {
+      const on = idx === i;
+      slide.classList.toggle('is-active', on);
+      if (on) slide.removeAttribute('inert');
+      else slide.setAttribute('inert', '');
+      slide.setAttribute('aria-hidden', on ? 'false' : 'true');
+    });
+    dots.forEach((dot, idx) => {
+      dot.setAttribute('aria-current', idx === i ? 'true' : 'false');
+    });
+    if (status) {
+      const label = slides[i].getAttribute('data-name') || '';
+      status.textContent = String(i + 1).padStart(2, '0') + ' / 05';
+      status.setAttribute('aria-label', label + ', ' + (i + 1) + ' of ' + slides.length);
+    }
+  }
+
+  root.querySelectorAll('.svc-carousel-btn').forEach(btn => {
+    btn.addEventListener('click', () => go(i + Number(btn.dataset.dir)));
+  });
+  dots.forEach((dot, idx) => dot.addEventListener('click', () => go(idx)));
+
+  root.addEventListener('keydown', e => {
+    if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
+      e.preventDefault();
+      go(i + 1);
+    }
+    if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
+      e.preventDefault();
+      go(i - 1);
+    }
+    if (e.key === 'Home') { e.preventDefault(); go(0); }
+    if (e.key === 'End') { e.preventDefault(); go(slides.length - 1); }
+  });
+
+  track.addEventListener('pointerdown', e => { x0 = e.clientX; });
+  track.addEventListener('pointerup', e => {
+    if (x0 == null) return;
+    const dx = e.clientX - x0;
+    if (Math.abs(dx) > 48) go(i + (dx < 0 ? 1 : -1));
+    x0 = null;
+  });
+  track.addEventListener('pointercancel', () => { x0 = null; });
+
+  window.addEventListener('resize', () => go(i));
+  go(0);
+})();
+
+// ── COPY EMAIL ────────────────────────────────────────
+(function initCopyEmail(){
+  const email = 'lolaogundipe@gmail.com';
+  document.querySelectorAll('[data-copy-email]').forEach(btn => {
+    const idle = btn.textContent.trim();
+    btn.addEventListener('click', async () => {
+      let ok = false;
+      try {
+        if (navigator.clipboard && window.isSecureContext) {
+          await navigator.clipboard.writeText(email);
+          ok = true;
+        }
+      } catch (err) { /* fall through to execCommand */ }
+      if (!ok) {
+        const ta = document.createElement('textarea');
+        ta.value = email;
+        ta.setAttribute('readonly', '');
+        ta.style.position = 'fixed';
+        ta.style.left = '-9999px';
+        document.body.appendChild(ta);
+        ta.select();
+        ok = document.execCommand('copy');
+        document.body.removeChild(ta);
+      }
+      btn.setAttribute('aria-live', 'polite');
+      btn.textContent = ok ? 'Copied' : 'Copy failed';
+      window.clearTimeout(btn._copyTimer);
+      btn._copyTimer = window.setTimeout(() => {
+        btn.textContent = idle;
+      }, 2000);
+    });
+  });
 })();
