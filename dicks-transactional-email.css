@@ -1,0 +1,645 @@
+/* ─── TOKENS (mirrors the main site's editorial system) ─── */
+:root {
+  --bg: #000000;
+  --bg2: #0a0a0a;
+  --surface: #111111;
+  --border: #ffffff;
+  --border-dim: #3f3f46;
+  --text: #ffffff;
+  --text2: #bababa;
+  --text3: #6b6b73;
+  --font-display: 'Geist Mono', monospace;
+  --font-body: 'Inter', sans-serif;
+  --font-mono: 'Fragment Mono', 'Geist Mono', monospace;
+  --ease-out: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  --ease-snap: cubic-bezier(0.16, 1, 0.3, 1);
+
+  /* Motion durations — overridden to near-zero under reduced motion */
+  --t-fast: 0.4s;
+  --t-med: 0.6s;
+  --t-slow: 0.9s;
+}
+
+* , *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body.story-page {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  min-height: 100vh;
+}
+
+.story-shell {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 96px 24px 80px;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+.cs-back-link {
+  position: fixed;
+  top: 24px;
+  left: 24px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  color: var(--text2);
+  text-decoration: none;
+  z-index: 20;
+  transition: color 0.2s;
+}
+.cs-back-link:hover { color: var(--text); }
+
+/* ─── INTRO ─── */
+.story-intro { display: flex; flex-direction: column; gap: 12px; max-width: 560px; }
+.story-eyebrow {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--text3);
+}
+.story-title {
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: clamp(20px, 3vw, 26px);
+  line-height: 1.35;
+  letter-spacing: -0.01em;
+  color: var(--text);
+}
+.story-title em { color: var(--text2); font-style: normal; }
+
+/* ─── WINDOW CHROME (matches project-window styling) ─── */
+.story-window {
+  border: 1px solid var(--border);
+  background: var(--bg2);
+}
+.stts-chrome {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--border-dim);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  color: var(--text3);
+}
+
+/* ─── STAGE ─── */
+.story-stage {
+  position: relative;
+  padding: 36px 20px 28px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 26px;
+}
+
+/* ─── RAIL (5 nodes: Cart · System · Notify · Email · Landing) ─── */
+.story-rail {
+  display: flex;
+  align-items: flex-start;
+  width: 100%;
+  max-width: 480px;
+  list-style: none;
+}
+.rail-node {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 7px;
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text3);
+  min-width: 40px;
+}
+.rail-dot {
+  width: 7px; height: 7px;
+  border-radius: 50%;
+  border: 1px solid var(--text3);
+  background: transparent;
+  transition: background var(--t-med) var(--ease-out), border-color var(--t-med) var(--ease-out), transform var(--t-med) var(--ease-out);
+}
+.rail-node[data-state="current"] .rail-dot {
+  background: var(--text);
+  border-color: var(--text);
+  transform: scale(1.4);
+}
+.rail-node[data-state="passed"] .rail-dot {
+  background: var(--text2);
+  border-color: var(--text2);
+}
+.rail-node[data-state="current"] .rail-label { color: var(--text); }
+.rail-node[data-state="passed"] .rail-label { color: var(--text2); }
+.rail-label { transition: color var(--t-med) var(--ease-out); }
+
+.rail-connector {
+  flex: 1;
+  height: 1px;
+  margin-top: 3px;
+  background: var(--border-dim);
+  position: relative;
+  overflow: hidden;
+}
+.rail-connector::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--text2);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform var(--t-slow) var(--ease-out);
+}
+.rail-connector[data-filled="true"]::after { transform: scaleX(1); }
+
+/* ─── SCENE VIEWPORT ─── */
+.story-viewport {
+  position: relative;
+  width: 100%;
+  max-width: 300px;
+  height: 480px;
+}
+
+.layer {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transform: translateY(10px) scale(0.98);
+  pointer-events: none;
+  transition: opacity var(--t-slow) var(--ease-out), transform var(--t-slow) var(--ease-out);
+}
+.layer.is-active {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  pointer-events: auto;
+}
+
+/* Act 1 → 2 → 3 handoff: the card recedes, the system panel is a brief
+   flat middle beat, the phone arrives larger and settles — a pull-back
+   from the customer moment into the device, not a plain cut. */
+.layer-card:not(.is-active) { transform: translateY(-8px) scale(0.9); }
+.layer-system:not(.is-active) { transform: translateY(-4px) scale(0.94); }
+.layer-phone:not(.is-active) { transform: translateY(16px) scale(1.08); }
+
+/* ─── ACT 1: PRODUCT CARD (add to cart → added) ─── */
+.product-card {
+  position: relative;
+  width: 220px;
+  height: 431px;
+}
+.product-card-media {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: #ffffff;
+  box-shadow:
+    0 40px 80px -28px rgba(0,0,0,0.75),
+    0 0 0 1px rgba(255,255,255,0.06);
+}
+.product-card-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  opacity: 0;
+  transition: opacity var(--t-slow) var(--ease-out);
+}
+[data-card-phase="add"] .product-card-img[data-state="add"],
+[data-card-phase="added"] .product-card-img[data-state="added"] {
+  opacity: 1;
+}
+
+/* Tap feedback on Add to Cart — measured against the button in
+   assets/product-add.png (bottom-anchored, near full width). */
+.card-tap-dot {
+  position: absolute;
+  left: 50%;
+  top: 94.5%;
+  width: 18px; height: 18px;
+  margin: -9px 0 0 -9px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.9);
+  opacity: 0;
+  transform: translateY(60px) scale(0.6);
+  pointer-events: none;
+}
+[data-card-phase="add"] .card-tap-dot {
+  animation: tap-land 1.6s var(--ease-snap) 0.5s both;
+}
+@keyframes tap-land {
+  0% { opacity: 0; transform: translateY(60px) scale(0.6); }
+  55% { opacity: 0.9; transform: translateY(0) scale(1); }
+  75% { opacity: 0.4; transform: translateY(0) scale(1.8); }
+  76% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+/* ─── ACT 2: ORDER FULFILLMENT SYSTEM ───
+   A nested terminal window — reusing this page's own .stts-chrome
+   idiom — so the "peek behind the curtain" reads as part of the same
+   design system rather than a foreign ops dashboard. Two checks run in
+   sequence (store pickup, then shipping) and resolve live; the sneaker
+   stays visually present as a cropped thumbnail of the real product
+   photography, never a placeholder. */
+.sys-panel {
+  width: 262px;
+  border: 1px solid var(--border);
+  background: var(--bg2);
+}
+.sys-panel-chrome { font-size: 10px; }
+.sys-body {
+  padding: 16px 16px 18px;
+  display: flex;
+  flex-direction: column;
+}
+.sys-line {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--text2);
+  letter-spacing: 0.01em;
+  margin-bottom: 6px;
+}
+.sys-prompt { color: var(--text3); margin-right: 5px; }
+
+.sys-product-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 2px 0 14px 14px;
+}
+.sys-thumb {
+  width: 30px; height: 30px;
+  border-radius: 6px;
+  flex-shrink: 0;
+  background-image: url('assets/product-added.png');
+  background-repeat: no-repeat;
+  background-size: 340% auto;
+  background-position: 48% 27%;
+  box-shadow: 0 0 0 1px rgba(255,255,255,0.12);
+}
+.sys-product-name {
+  font-family: var(--font-body);
+  font-size: 11.5px;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.sys-result {
+  position: relative;
+  height: 15px;
+  margin: 0 0 14px 14px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+}
+.sys-state {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  white-space: nowrap;
+  opacity: 0;
+}
+.sys-dot {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+.sys-dot[data-kind="checking"] {
+  background: var(--text3);
+  animation: sys-dot-pulse 0.9s ease-in-out infinite;
+}
+.sys-dot[data-kind="store-result"],
+.sys-dot[data-kind="ship-result"] {
+  width: 13px; height: 13px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.sys-dot[data-kind="store-result"] { background: #e5484d; }
+.sys-dot[data-kind="store-result"]::after {
+  content: '\2715';
+  color: #fff;
+  font-size: 8px;
+  font-weight: 700;
+  line-height: 1;
+}
+.sys-dot[data-kind="ship-result"] { background: #3fae6b; box-shadow: 0 0 6px rgba(63,174,107,0.6); }
+.sys-dot[data-kind="ship-result"]::after {
+  content: '\2713';
+  color: #08341c;
+  font-size: 9px;
+  font-weight: 700;
+  line-height: 1;
+}
+@keyframes sys-dot-pulse {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 1; }
+}
+
+.sys-state[data-kind="pending"] { opacity: 0.55; color: var(--text3); }
+.sys-state[data-kind="checking"] { color: var(--text2); }
+.sys-state[data-kind="result"] { color: var(--text); font-weight: 500; }
+.sys-result[data-check="store"] .sys-state[data-kind="result"] { color: #ff8a8f; font-weight: 600; }
+
+/* Store check resolves during the "store" phase, then stays resolved.
+   Delays are tuned to the scene's own duration (see TIMING in the JS)
+   so "checking…" is readable before it resolves. */
+[data-sys-phase="store"] .sys-result[data-check="store"] .sys-state[data-kind="checking"] {
+  animation: sys-fade-out 0.3s ease-out 1.3s both;
+}
+[data-sys-phase="store"] .sys-result[data-check="store"] .sys-state[data-kind="result"] {
+  animation: sys-fade-in 0.3s ease-out 1.4s both;
+}
+[data-sys-phase="ship"] .sys-result[data-check="store"] .sys-state[data-kind="result"],
+[data-sys-phase="notify"] .sys-result[data-check="store"] .sys-state[data-kind="result"] {
+  opacity: 1;
+}
+
+/* Ship check stays "pending" through the store phase, then resolves
+   during the "ship" phase and stays resolved through "notify" */
+[data-sys-phase="store"] .sys-result[data-check="ship"] .sys-state[data-kind="pending"] {
+  opacity: 0.55;
+}
+[data-sys-phase="ship"] .sys-result[data-check="ship"] .sys-state[data-kind="pending"] {
+  animation: sys-fade-out 0.001s linear both;
+}
+[data-sys-phase="ship"] .sys-result[data-check="ship"] .sys-state[data-kind="checking"] {
+  animation: sys-fade-out 0.3s ease-out 1.3s both;
+}
+[data-sys-phase="ship"] .sys-result[data-check="ship"] .sys-state[data-kind="result"] {
+  animation: sys-fade-in 0.3s ease-out 1.4s both;
+}
+[data-sys-phase="notify"] .sys-result[data-check="ship"] .sys-state[data-kind="result"] {
+  opacity: 1;
+}
+[data-sys-phase="notify"] .sys-result[data-check="ship"] .sys-state[data-kind="pending"] {
+  opacity: 0;
+}
+
+@keyframes sys-fade-out { 0% { opacity: 1; } 100% { opacity: 0; } }
+@keyframes sys-fade-in { 0% { opacity: 0; } 100% { opacity: 1; } }
+
+.sys-action-line {
+  margin-top: 4px;
+  margin-bottom: 0;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  opacity: 0;
+  transform: translateY(4px);
+  transition: opacity var(--t-med) var(--ease-out), transform var(--t-med) var(--ease-out);
+}
+[data-sys-phase="notify"] .sys-action-line {
+  opacity: 1;
+  transform: translateY(0);
+}
+.sys-action-check {
+  width: 14px; height: 14px;
+  border-radius: 50%;
+  background: #3fae6b;
+  color: #052e17;
+  font-size: 9px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+/* ─── ACT 3: REALISTIC PHONE (notification → email → landing) ───
+   assets/phone-notification.webp, phone-email.png and phone-landing.png
+   share the exact same mockup template and canvas size, so crossfading
+   between them reads as one continuous device, not a scene cut. */
+.phone-mockup {
+  position: relative;
+  width: 224px;
+  height: 461px;
+  border-radius: 30px;
+  overflow: hidden;
+  box-shadow:
+    0 50px 90px -28px rgba(0,0,0,0.8),
+    0 0 0 1px rgba(255,255,255,0.05);
+}
+.phone-mockup-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  opacity: 0;
+  transition: opacity var(--t-slow) var(--ease-out);
+}
+[data-phone-state="notify"] .phone-mockup-img[data-state="notify"],
+[data-phone-state="email"] .phone-mockup-img[data-state="email"],
+[data-phone-state="landing"] .phone-mockup-img[data-state="landing"] {
+  opacity: 1;
+}
+
+/* Notification entrance — a couple of quiet attention pulses around the
+   real notification card, measured from assets/phone-notification.webp */
+.notif-pulse {
+  position: absolute;
+  left: 6.5%;
+  width: 87%;
+  top: 35.5%;
+  height: 9.5%;
+  border-radius: 16px;
+  border: 1.5px solid transparent;
+  opacity: 0;
+  pointer-events: none;
+}
+[data-phone-state="notify"] .notif-pulse {
+  animation: notif-pulse-ring 1.1s var(--ease-out) 0.3s 2;
+}
+@keyframes notif-pulse-ring {
+  0% { opacity: 0; box-shadow: 0 0 0 0 rgba(255,255,255,0.0); }
+  30% { opacity: 0.8; box-shadow: 0 0 0 0 rgba(255,255,255,0.35); }
+  100% { opacity: 0; box-shadow: 0 0 0 10px rgba(255,255,255,0); }
+}
+
+/* Tap ripple — fires the instant the notification is "tapped" open */
+.notif-tap-ripple {
+  position: absolute;
+  left: 6.5%;
+  width: 87%;
+  top: 35.5%;
+  height: 9.5%;
+  border-radius: 16px;
+  pointer-events: none;
+  opacity: 0;
+}
+[data-notif-tapped="true"] .notif-tap-ripple {
+  animation: notif-ripple 0.6s var(--ease-out) both;
+}
+@keyframes notif-ripple {
+  0% { opacity: 0.9; box-shadow: 0 0 0 0 rgba(255,255,255,0.4); }
+  100% { opacity: 0; box-shadow: 0 0 0 16px rgba(255,255,255,0); }
+}
+
+/* CTA spotlight — measured directly from assets/phone-email.png's
+   rendered "Review Shipping Information" button. */
+.cta-highlight {
+  position: absolute;
+  left: 9.5%;
+  width: 81%;
+  top: 74.3%;
+  height: 7%;
+  border: 1.5px solid transparent;
+  border-radius: 6px;
+  opacity: 0;
+  transition: opacity var(--t-fast) var(--ease-out);
+}
+[data-cta-active="true"] .cta-highlight {
+  opacity: 1;
+  animation: cta-pulse 1.5s var(--ease-out) infinite;
+}
+@keyframes cta-pulse {
+  0%, 100% { border-color: rgba(255,255,255,0.0); box-shadow: 0 0 0 0 rgba(255,255,255,0.0); }
+  40% { border-color: rgba(255,255,255,0.65); box-shadow: 0 0 0 6px rgba(255,255,255,0.1); }
+}
+
+.cta-tap-dot {
+  position: absolute;
+  left: 50%;
+  top: 77.8%;
+  width: 17px; height: 17px;
+  margin: -8.5px 0 0 -8.5px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.92);
+  opacity: 0;
+  transform: translateY(70px) scale(0.6);
+}
+[data-cta-active="true"] .cta-tap-dot {
+  animation: cta-tap-land 2s var(--ease-snap) 0.4s both;
+}
+@keyframes cta-tap-land {
+  0% { opacity: 0; transform: translateY(70px) scale(0.6); }
+  40% { opacity: 0.95; transform: translateY(0) scale(1); }
+  58% { opacity: 0.4; transform: translateY(0) scale(1.9); }
+  60% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+/* ─── CAPTION ─── */
+.story-caption {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.03em;
+  color: var(--text2);
+  min-height: 18px;
+  text-align: center;
+}
+
+/* ─── CONTROLS ─── */
+.story-controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 16px 20px 22px;
+  border-top: 1px solid var(--border-dim);
+}
+.story-btn {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text2);
+  background: transparent;
+  border: 1px solid var(--border-dim);
+  padding: 9px 16px;
+  cursor: pointer;
+  transition: color 0.2s, border-color 0.2s, background 0.2s;
+}
+.story-btn:hover { color: var(--text); border-color: var(--text2); }
+.story-btn:focus-visible { outline: 2px solid var(--text); outline-offset: 2px; }
+.story-btn--primary { color: var(--bg); background: var(--text); border-color: var(--text); }
+.story-btn--primary:hover { color: var(--bg); background: var(--text2); border-color: var(--text2); }
+
+.story-reduced-note {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--text3);
+  text-align: center;
+}
+
+/* ─── INSTANT JUMP (replay reset / initial static frame) ─── */
+.story-shell.is-jumping * {
+  transition-duration: 0s !important;
+  animation-duration: 0s !important;
+  animation-delay: 0s !important;
+}
+
+/* ─── REDUCED MOTION ─── */
+.story-shell.is-reduced-motion .layer,
+.story-shell.is-reduced-motion .layer-card,
+.story-shell.is-reduced-motion .layer-system,
+.story-shell.is-reduced-motion .layer-phone,
+.story-shell.is-reduced-motion .product-card-img,
+.story-shell.is-reduced-motion .phone-mockup-img,
+.story-shell.is-reduced-motion .sys-action-line,
+.story-shell.is-reduced-motion .rail-dot,
+.story-shell.is-reduced-motion .rail-label,
+.story-shell.is-reduced-motion .rail-connector::after {
+  transition-duration: 0.12s !important;
+  transition-delay: 0s !important;
+  transform: none !important;
+}
+.story-shell.is-reduced-motion .layer.is-active { transform: none; }
+.story-shell.is-reduced-motion .card-tap-dot,
+.story-shell.is-reduced-motion .notif-pulse,
+.story-shell.is-reduced-motion .notif-tap-ripple,
+.story-shell.is-reduced-motion .cta-tap-dot {
+  animation: none !important;
+  opacity: 0 !important;
+}
+.story-shell.is-reduced-motion .cta-highlight {
+  animation: none !important;
+}
+.story-shell.is-reduced-motion [data-cta-active="true"] .cta-highlight {
+  opacity: 1 !important;
+  border-color: rgba(255,255,255,0.5) !important;
+}
+
+/* System panel — skip the checking pulse and land straight on results */
+.story-shell.is-reduced-motion .sys-dot[data-kind="checking"] { animation: none !important; }
+.story-shell.is-reduced-motion [data-sys-phase] .sys-state[data-kind="checking"] {
+  animation: none !important;
+  opacity: 0 !important;
+}
+.story-shell.is-reduced-motion [data-sys-phase="store"] .sys-result[data-check="store"] .sys-state[data-kind="result"],
+.story-shell.is-reduced-motion [data-sys-phase="ship"] .sys-result[data-check="store"] .sys-state[data-kind="result"],
+.story-shell.is-reduced-motion [data-sys-phase="notify"] .sys-result[data-check="store"] .sys-state[data-kind="result"],
+.story-shell.is-reduced-motion [data-sys-phase="ship"] .sys-result[data-check="ship"] .sys-state[data-kind="result"],
+.story-shell.is-reduced-motion [data-sys-phase="notify"] .sys-result[data-check="ship"] .sys-state[data-kind="result"] {
+  animation: none !important;
+  opacity: 1 !important;
+}
+.story-shell.is-reduced-motion [data-sys-phase="ship"] .sys-result[data-check="ship"] .sys-state[data-kind="pending"],
+.story-shell.is-reduced-motion [data-sys-phase="notify"] .sys-result[data-check="ship"] .sys-state[data-kind="pending"] {
+  animation: none !important;
+  opacity: 0 !important;
+}
+
+/* ─── RESPONSIVE ─── */
+@media (max-width: 520px) {
+  .story-shell { padding: 88px 16px 56px; }
+  .story-viewport { max-width: 260px; height: 440px; }
+  .product-card { width: 190px; height: 372px; }
+  .sys-panel { width: 240px; }
+  .phone-mockup { width: 194px; height: 399px; }
+}

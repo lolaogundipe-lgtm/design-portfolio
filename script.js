@@ -398,3 +398,97 @@ function switchTab(btn, id) {
     });
   });
 })();
+
+// ── SAVE THE SALE OVERLAY ──────────────────────────────
+(function initSaveTheSaleOverlay() {
+  const overlay = document.getElementById('sttsOverlay');
+  const card = document.getElementById('sttsCard');
+  if (!overlay || !card) return;
+
+  const panel = overlay.querySelector('.stts-panel');
+  const siteContent = document.getElementById('siteContent');
+  const closeTriggers = overlay.querySelectorAll('[data-stts-close]');
+  const HASH = '#work/save-the-sale';
+
+  let lastFocused = null;
+
+  function focusableEls() {
+    return Array.prototype.slice.call(
+      panel.querySelectorAll('a[href], button:not([disabled]), input, select, textarea, [tabindex]:not([tabindex="-1"])')
+    ).filter(function (el) { return el.offsetParent !== null; });
+  }
+
+  function trapFocus(e) {
+    if (e.key !== 'Tab') return;
+    const items = focusableEls();
+    if (!items.length) return;
+    const first = items[0];
+    const last = items[items.length - 1];
+    if (e.shiftKey && document.activeElement === first) {
+      e.preventDefault();
+      last.focus();
+    } else if (!e.shiftKey && document.activeElement === last) {
+      e.preventDefault();
+      first.focus();
+    }
+  }
+
+  function onKeydown(e) {
+    if (e.key === 'Escape') {
+      closeOverlay();
+    } else {
+      trapFocus(e);
+    }
+  }
+
+  function openOverlay() {
+    if (overlay.classList.contains('is-open')) return;
+    lastFocused = document.activeElement;
+    overlay.classList.add('is-open');
+    document.documentElement.classList.add('stts-lock');
+    if (siteContent) {
+      siteContent.setAttribute('inert', '');
+      siteContent.setAttribute('aria-hidden', 'true');
+    }
+    document.addEventListener('keydown', onKeydown);
+    const closeBtn = overlay.querySelector('.stts-close');
+    if (closeBtn) closeBtn.focus();
+    if (window.sttsStoryboard) window.sttsStoryboard.replay();
+  }
+
+  function closeOverlay() {
+    if (!overlay.classList.contains('is-open')) return;
+    overlay.classList.remove('is-open');
+    document.documentElement.classList.remove('stts-lock');
+    if (siteContent) {
+      siteContent.removeAttribute('inert');
+      siteContent.removeAttribute('aria-hidden');
+    }
+    document.removeEventListener('keydown', onKeydown);
+    if (window.sttsStoryboard) window.sttsStoryboard.stop();
+    const hadRealFocus = lastFocused && typeof lastFocused.focus === 'function'
+      && lastFocused !== document.body && lastFocused !== document.documentElement
+      && lastFocused !== card;
+    if (hadRealFocus) {
+      lastFocused.focus();
+    } else {
+      card.focus();
+    }
+    if (location.hash === HASH) {
+      history.replaceState(null, '', location.pathname + location.search + '#work');
+    }
+  }
+
+  closeTriggers.forEach(function (el) { el.addEventListener('click', closeOverlay); });
+
+  function syncFromHash() {
+    if (location.hash === HASH) {
+      openOverlay();
+    } else if (overlay.classList.contains('is-open')) {
+      closeOverlay();
+    }
+  }
+
+  window.addEventListener('hashchange', syncFromHash);
+  syncFromHash();
+})();

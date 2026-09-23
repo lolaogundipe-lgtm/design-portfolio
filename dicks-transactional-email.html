@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lola Ogundipe — Order Sourcing, End-to-End Journey</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fragment+Mono:ital,wght@0,400;1,400&family=Geist+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="icon" href="favicon.ico" sizes="any">
+<link rel="stylesheet" href="dicks-transactional-email.css?v=5">
+</head>
+<body class="story-page">
+
+<a href="index.html#work" class="cs-back-link">← Back to work</a>
+
+<main class="story-shell" id="storyShell">
+
+  <div class="story-intro">
+    <span class="story-eyebrow">Motion study · Order sourcing &amp; transactional communication</span>
+    <h1 class="story-title">An athlete completes their purchase — <em>order sourcing finds it's not at their store, but it can still ship to them.</em></h1>
+  </div>
+
+  <div class="story-window">
+    <div class="stts-chrome">
+      <span>ADD_TO_CART → SOURCING_CHECK → EMAIL → LANDING</span>
+      <span>— □ ×</span>
+    </div>
+
+    <section class="story-stage" id="storyStage" data-scene="0" data-card-phase="add" data-sys-phase="store" data-phone-state="notify" data-notif-tapped="false" data-cta-active="false" aria-roledescription="animation" aria-label="Add to cart through order sourcing, email, and landing page, animated sequence">
+
+      <ol class="story-rail" aria-hidden="true">
+        <li class="rail-node" data-node="cart" data-state="current">
+          <span class="rail-dot"></span>
+          <span class="rail-label">Cart</span>
+        </li>
+        <li class="rail-connector" data-filled="false"></li>
+        <li class="rail-node" data-node="system" data-state="upcoming">
+          <span class="rail-dot"></span>
+          <span class="rail-label">System</span>
+        </li>
+        <li class="rail-connector" data-filled="false"></li>
+        <li class="rail-node" data-node="notify" data-state="upcoming">
+          <span class="rail-dot"></span>
+          <span class="rail-label">Notify</span>
+        </li>
+        <li class="rail-connector" data-filled="false"></li>
+        <li class="rail-node" data-node="email" data-state="upcoming">
+          <span class="rail-dot"></span>
+          <span class="rail-label">Email</span>
+        </li>
+        <li class="rail-connector" data-filled="false"></li>
+        <li class="rail-node" data-node="landing" data-state="upcoming">
+          <span class="rail-dot"></span>
+          <span class="rail-label">Landing</span>
+        </li>
+      </ol>
+
+      <div class="story-viewport">
+
+        <!-- ACT 1 — PRODUCT CARD (add to cart → added) -->
+        <div class="layer layer-card is-active" data-layer="card">
+          <div class="product-card">
+            <div class="product-card-media">
+              <img class="product-card-img" data-state="add" src="assets/product-add.png" alt="On Men's Cloudnova 2 Shoes product card with an Add to Cart button.">
+              <img class="product-card-img" data-state="added" src="assets/product-added.png" alt="Product card showing the item Added to cart, with a checkmark confirmation.">
+
+              <span class="card-tap-dot" aria-hidden="true"></span>
+            </div>
+          </div>
+        </div>
+
+        <!-- ACT 2 — ORDER FULFILLMENT SYSTEM (peek behind the curtain) -->
+        <div class="layer layer-system" data-layer="system">
+          <div class="sys-panel">
+            <div class="stts-chrome sys-panel-chrome">
+              <span>ORDER_FULFILLMENT.SYS</span>
+              <span>— □ ×</span>
+            </div>
+            <div class="sys-body">
+
+              <p class="sys-line"><span class="sys-prompt">$</span> lookup sku CN2‑CPR‑090</p>
+              <div class="sys-product-row">
+                <span class="sys-thumb" role="img" aria-label="On Men's Cloudnova 2, Caper/Desert"></span>
+                <span class="sys-product-name">On Men's Cloudnova 2</span>
+              </div>
+
+              <p class="sys-line"><span class="sys-prompt">$</span> check store_pickup — PGH #142</p>
+              <p class="sys-result" data-check="store">
+                <span class="sys-state" data-kind="checking"><span class="sys-dot" data-kind="checking"></span>checking…</span>
+                <span class="sys-state" data-kind="result"><span class="sys-dot" data-kind="store-result"></span>0 available</span>
+              </p>
+
+              <p class="sys-line"><span class="sys-prompt">$</span> check ship_to_customer</p>
+              <p class="sys-result" data-check="ship">
+                <span class="sys-state" data-kind="pending">— pending</span>
+                <span class="sys-state" data-kind="checking"><span class="sys-dot" data-kind="checking"></span>checking…</span>
+                <span class="sys-state" data-kind="result"><span class="sys-dot" data-kind="ship-result"></span>available</span>
+              </p>
+
+              <p class="sys-line sys-action-line">
+                <span class="sys-prompt">$</span> notify customer
+                <span class="sys-action-check" aria-hidden="true">✓</span>
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- ACT 3 — REALISTIC PHONE (notification → email → landing) -->
+        <div class="layer layer-phone" data-layer="phone">
+          <div class="phone-mockup">
+            <img class="phone-mockup-img" data-state="notify" src="assets/phone-notification.webp" alt="Lock screen with a Gmail push notification from DICK'S Sporting Goods: Hi Lauren, the store you chose doesn't have your item in stock.">
+            <img class="phone-mockup-img" data-state="email" src="assets/phone-email.png" alt="Gmail inbox open to the DICK'S Sporting Goods email, subject Review Order: Your item is unavailable, with a Review Shipping Information button.">
+            <img class="phone-mockup-img" data-state="landing" src="assets/phone-landing.png" alt="DICK'S Sporting Goods landing page: Not In Stores Near You, with a Confirm Shipping button and delivery address.">
+
+            <span class="notif-pulse" aria-hidden="true"></span>
+            <span class="notif-tap-ripple" aria-hidden="true"></span>
+            <span class="cta-highlight" aria-hidden="true"></span>
+            <span class="cta-tap-dot" aria-hidden="true"></span>
+          </div>
+        </div>
+
+      </div>
+
+      <p class="story-caption" id="storyCaption" aria-live="polite">The athlete completes their purchase.</p>
+
+    </section>
+
+    <div class="story-controls">
+      <button type="button" class="story-btn" id="playPauseBtn" aria-pressed="false">Pause</button>
+      <button type="button" class="story-btn story-btn--primary" id="replayBtn">Replay</button>
+    </div>
+  </div>
+
+  <p class="story-reduced-note" id="reducedNote" hidden>Motion is reduced on this device. Showing the final state — press Play to view the sequence.</p>
+
+</main>
+
+<script src="dicks-transactional-email.js"></script>
+</body>
+</html>

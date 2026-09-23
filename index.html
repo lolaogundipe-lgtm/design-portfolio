@@ -11,12 +11,15 @@
 <link rel="icon" type="image/png" href="favicon-192.png">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <link rel="stylesheet" href="style.css?v=svc1">
+<link rel="stylesheet" href="dicks-transactional-email.css?v=5">
 </head>
 <body>
 
 <div id="cursor"></div>
 <div id="cursor-follow"></div>
 <div id="cursor-label"></div>
+
+<div id="siteContent">
 
 <!-- NAV -->
 <nav id="nav">
@@ -61,7 +64,7 @@
   <div class="hero-meta-bar">
     <span>NYC</span>
     <span>AVAILABLE_FOR_HIRE</span>
-    <span>05 SELECTED WORKS</span>
+    <span>06 SELECTED WORKS</span>
   </div>
 </section>
 
@@ -94,23 +97,24 @@
       </div>
     </a>
 
-    <a href="strand.html" class="project-window reveal reveal-delay-1">
+    <a href="#work/save-the-sale" class="project-window reveal reveal-delay-1" id="sttsCard">
       <div class="window-chrome">
-        <span class="window-title">02 / STRAND</span>
+        <span class="window-title">02 / SAVE_THE_SALE</span>
         <span class="window-controls">— □ ×</span>
       </div>
       <div class="window-body">
         <div class="window-media">
-          <img src="images/strand-onboarding-01.png" alt="Strand onboarding — Hair care deserves a system" loading="lazy">
+          <img src="assets/phone-email.png" alt="Save the Sale — a lifecycle email and SMS experience recovering cancelled pickup orders" loading="lazy">
+          <span class="window-media-badge"><span class="window-media-badge-icon">▶</span> Motion story</span>
         </div>
         <div class="window-copy">
-          <div class="project-label">Solo build · AI-assisted · PWA + iOS</div>
-          <h3 class="project-name">Strand</h3>
-          <p class="project-desc">A hair-care routine tracker, taken from a blank file to a live product with accounts, a database, push notifications, analytics, and a native iOS app.</p>
+          <div class="project-label">Growth Design · Lifecycle Communications · Email + SMS</div>
+          <h3 class="project-name">Recovering $7.65M Through Lifecycle Growth Design</h3>
+          <p class="project-desc">Turning Cancelled Orders into Recovered Revenue that raised offer acceptance from 10.2% to 44.7%</p>
           <div class="project-tags">
-            <span>0 → 1</span>
-            <span>Claude Code</span>
-            <span>↗ Live product</span>
+            <span>Growth Design</span>
+            <span>Email + SMS</span>
+            <span>↗ $7.65M recovered</span>
           </div>
         </div>
       </div>
@@ -138,9 +142,31 @@
       </div>
     </a>
 
-    <a href="live-transcribe.html" class="project-window reveal reveal-delay-3">
+    <a href="strand.html" class="project-window reveal reveal-delay-3">
       <div class="window-chrome">
-        <span class="window-title">04 / LIVE_TRANSCRIBE</span>
+        <span class="window-title">04 / STRAND</span>
+        <span class="window-controls">— □ ×</span>
+      </div>
+      <div class="window-body">
+        <div class="window-media">
+          <img src="images/strand-onboarding-01.png" alt="Strand onboarding — Hair care deserves a system" loading="lazy">
+        </div>
+        <div class="window-copy">
+          <div class="project-label">Solo build · AI-assisted · PWA + iOS</div>
+          <h3 class="project-name">Strand</h3>
+          <p class="project-desc">A hair-care routine tracker, taken from a blank file to a live product with accounts, a database, push notifications, analytics, and a native iOS app.</p>
+          <div class="project-tags">
+            <span>0 → 1</span>
+            <span>Claude Code</span>
+            <span>↗ Live product</span>
+          </div>
+        </div>
+      </div>
+    </a>
+
+    <a href="live-transcribe.html" class="project-window reveal">
+      <div class="window-chrome">
+        <span class="window-title">05 / LIVE_TRANSCRIBE</span>
         <span class="window-controls">— □ ×</span>
       </div>
       <div class="window-body">
@@ -160,9 +186,9 @@
       </div>
     </a>
 
-    <a href="market-fresh.html" class="project-window project-window--span reveal">
+    <a href="market-fresh.html" class="project-window reveal">
       <div class="window-chrome">
-        <span class="window-title">05 / MARKET_FRESH</span>
+        <span class="window-title">06 / MARKET_FRESH</span>
         <span class="window-controls">— □ ×</span>
       </div>
       <div class="window-body">
@@ -316,6 +342,177 @@
   <div class="footer-text">NEW YORK · AVAILABLE FOR FREELANCE &amp; FULL-TIME</div>
 </footer>
 
+</div><!-- /#siteContent -->
+
+<!-- SAVE THE SALE — full-screen case study overlay -->
+<div class="stts-overlay" id="sttsOverlay">
+  <div class="stts-overlay-scrim" data-stts-close></div>
+  <div class="stts-panel" role="dialog" aria-modal="true" aria-labelledby="sttsPanelTitle">
+    <div class="window-chrome">
+      <span class="window-title" id="sttsPanelTitle">02 / SAVE_THE_SALE</span>
+      <button type="button" class="window-controls stts-close" data-stts-close aria-label="Close case study">×</button>
+    </div>
+
+    <div class="stts-scroll">
+
+      <section class="stts-section stts-hook">
+        <p class="stts-hook-num">$7.65M <span>recovered</span></p>
+        <h2 class="stts-hook-title">Recovering $7.65M Through Lifecycle Growth Design</h2>
+        <p class="stts-hook-sub">Turning Cancelled Orders into Recovered Revenue that raised offer acceptance from 10.2% to 44.7%</p>
+      </section>
+
+      <section class="stts-section">
+        <span class="stts-label">The problem</span>
+        <p class="stts-lead">$36M in annual sales were at risk.</p>
+        <p class="stts-body">Cancelled pickup orders were costing $36M a year, and most of those sales could have been saved because the items were available elsewhere.</p>
+      </section>
+
+      <section class="stts-section">
+        <span class="stts-label">The strategy</span>
+        <p class="stts-lead">Turn the cancellation into an opportunity.</p>
+        <p class="stts-body">A lifecycle intervention across email and SMS that turns a dead-end cancellation into an offer to recover the sale.</p>
+      </section>
+
+      <section class="stts-section stts-experience">
+        <span class="stts-label">The experience</span>
+
+        <div class="story-shell" id="storyShell">
+        <div class="story-window">
+          <div class="window-chrome">
+            <span>ADD_TO_CART → SOURCING_CHECK → EMAIL → LANDING</span>
+            <span>— □ ×</span>
+          </div>
+
+          <section class="story-stage" id="storyStage" data-scene="0" data-card-phase="add" data-sys-phase="store" data-phone-state="notify" data-notif-tapped="false" data-cta-active="false" aria-roledescription="animation" aria-label="Add to cart through order sourcing, email, and landing page, animated sequence">
+
+            <ol class="story-rail" aria-hidden="true">
+              <li class="rail-node" data-node="cart" data-state="current">
+                <span class="rail-dot"></span>
+                <span class="rail-label">Cart</span>
+              </li>
+              <li class="rail-connector" data-filled="false"></li>
+              <li class="rail-node" data-node="system" data-state="upcoming">
+                <span class="rail-dot"></span>
+                <span class="rail-label">System</span>
+              </li>
+              <li class="rail-connector" data-filled="false"></li>
+              <li class="rail-node" data-node="notify" data-state="upcoming">
+                <span class="rail-dot"></span>
+                <span class="rail-label">Notify</span>
+              </li>
+              <li class="rail-connector" data-filled="false"></li>
+              <li class="rail-node" data-node="email" data-state="upcoming">
+                <span class="rail-dot"></span>
+                <span class="rail-label">Email</span>
+              </li>
+              <li class="rail-connector" data-filled="false"></li>
+              <li class="rail-node" data-node="landing" data-state="upcoming">
+                <span class="rail-dot"></span>
+                <span class="rail-label">Landing</span>
+              </li>
+            </ol>
+
+            <div class="story-viewport">
+
+              <div class="layer layer-card is-active" data-layer="card">
+                <div class="product-card">
+                  <div class="product-card-media">
+                    <img class="product-card-img" data-state="add" src="assets/product-add.png" alt="On Men's Cloudnova 2 Shoes product card with an Add to Cart button.">
+                    <img class="product-card-img" data-state="added" src="assets/product-added.png" alt="Product card showing the item Added to cart, with a checkmark confirmation.">
+
+                    <span class="card-tap-dot" aria-hidden="true"></span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="layer layer-system" data-layer="system">
+                <div class="sys-panel">
+                  <div class="window-chrome sys-panel-chrome">
+                    <span>ORDER_FULFILLMENT.SYS</span>
+                    <span>— □ ×</span>
+                  </div>
+                  <div class="sys-body">
+
+                    <p class="sys-line"><span class="sys-prompt">$</span> lookup sku CN2‑CPR‑090</p>
+                    <div class="sys-product-row">
+                      <span class="sys-thumb" role="img" aria-label="On Men's Cloudnova 2, Caper/Desert"></span>
+                      <span class="sys-product-name">On Men's Cloudnova 2</span>
+                    </div>
+
+                    <p class="sys-line"><span class="sys-prompt">$</span> check store_pickup — PGH #142</p>
+                    <p class="sys-result" data-check="store">
+                      <span class="sys-state" data-kind="checking"><span class="sys-dot" data-kind="checking"></span>checking…</span>
+                      <span class="sys-state" data-kind="result"><span class="sys-dot" data-kind="store-result"></span>0 available</span>
+                    </p>
+
+                    <p class="sys-line"><span class="sys-prompt">$</span> check ship_to_customer</p>
+                    <p class="sys-result" data-check="ship">
+                      <span class="sys-state" data-kind="pending">— pending</span>
+                      <span class="sys-state" data-kind="checking"><span class="sys-dot" data-kind="checking"></span>checking…</span>
+                      <span class="sys-state" data-kind="result"><span class="sys-dot" data-kind="ship-result"></span>available</span>
+                    </p>
+
+                    <p class="sys-line sys-action-line">
+                      <span class="sys-prompt">$</span> notify customer
+                      <span class="sys-action-check" aria-hidden="true">✓</span>
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="layer layer-phone" data-layer="phone">
+                <div class="phone-mockup">
+                  <img class="phone-mockup-img" data-state="notify" src="assets/phone-notification.webp" alt="Lock screen with a Gmail push notification from DICK'S Sporting Goods: Hi Lauren, the store you chose doesn't have your item in stock.">
+                  <img class="phone-mockup-img" data-state="email" src="assets/phone-email.png" alt="Gmail inbox open to the DICK'S Sporting Goods email, subject Review Order: Your item is unavailable, with a Review Shipping Information button.">
+                  <img class="phone-mockup-img" data-state="landing" src="assets/phone-landing.png" alt="DICK'S Sporting Goods landing page: Not In Stores Near You, with a Confirm Shipping button and delivery address.">
+
+                  <span class="notif-pulse" aria-hidden="true"></span>
+                  <span class="notif-tap-ripple" aria-hidden="true"></span>
+                  <span class="cta-highlight" aria-hidden="true"></span>
+                  <span class="cta-tap-dot" aria-hidden="true"></span>
+                </div>
+              </div>
+
+            </div>
+
+            <p class="story-caption" id="storyCaption" aria-live="polite">The athlete completes their purchase.</p>
+
+          </section>
+
+          <div class="story-controls">
+            <button type="button" class="story-btn" id="playPauseBtn" aria-pressed="false">Pause</button>
+            <button type="button" class="story-btn story-btn--primary" id="replayBtn">Replay</button>
+          </div>
+        </div>
+
+        <p class="story-reduced-note" id="reducedNote" hidden>Motion is reduced on this device. Showing the final state — press Play to view the sequence.</p>
+        </div>
+      </section>
+
+      <section class="stts-section stts-impact">
+        <span class="stts-label">Impact</span>
+        <div class="stts-impact-grid">
+          <div class="stts-impact-stat">
+            <span class="stts-impact-num">$7.65M</span>
+            <span class="stts-impact-label">Recovered</span>
+          </div>
+          <div class="stts-impact-stat">
+            <span class="stts-impact-num">10.2% → 44.7%</span>
+            <span class="stts-impact-label">Acceptance rate</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="stts-section stts-role">
+        <span class="stts-label">Role</span>
+        <p class="stts-body">Growth Designer · Owned the experience across the lifecycle communication touchpoints.</p>
+      </section>
+
+    </div>
+  </div>
+</div>
+
 <script src="script.js"></script>
+<script src="dicks-transactional-email.js"></script>
 </body>
 </html>
