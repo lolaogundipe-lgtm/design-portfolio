@@ -193,15 +193,14 @@ body.story-page {
 /* ─── ACT 1: PRODUCT CARD (add to cart → added) ─── */
 .product-card {
   position: relative;
-  width: 220px;
-  height: 431px;
+  width: 265px;
+  height: 455px;
 }
 .product-card-media {
   position: relative;
   width: 100%;
   height: 100%;
   overflow: hidden;
-  background: #ffffff;
   box-shadow:
     0 40px 80px -28px rgba(0,0,0,0.75),
     0 0 0 1px rgba(255,255,255,0.06);
@@ -226,7 +225,7 @@ body.story-page {
 .card-tap-dot {
   position: absolute;
   left: 50%;
-  top: 94.5%;
+  top: 89.8%;
   width: 18px; height: 18px;
   margin: -9px 0 0 -9px;
   border-radius: 50%;
@@ -639,7 +638,7 @@ body.story-page {
 @media (max-width: 520px) {
   .story-shell { padding: 88px 16px 56px; }
   .story-viewport { max-width: 260px; height: 440px; }
-  .product-card { width: 190px; height: 372px; }
+  .product-card { width: 230px; height: 395px; }
   .sys-panel { width: 240px; }
   .phone-mockup { width: 194px; height: 399px; }
 }
