@@ -98,12 +98,13 @@ body.story-page {
   gap: 26px;
 }
 
-/* ─── RAIL (5 nodes: Cart · System · Notify · Email · Landing) ─── */
+/* ─── RAIL (Cart · System · Notify ─< Email | SMS >─ Landing) ─── */
 .story-rail {
   display: flex;
   align-items: flex-start;
   width: 100%;
-  max-width: 480px;
+  max-width: 520px;
+  margin-top: 10px;
   list-style: none;
 }
 .rail-node {
@@ -156,6 +157,54 @@ body.story-page {
   transition: transform var(--t-slow) var(--ease-out);
 }
 .rail-connector[data-filled="true"]::after { transform: scaleX(1); }
+
+/* Channel fork — Notify splits into two lanes (Email above, SMS below)
+   that rejoin before Landing: one offer, two channels, one destination.
+   Its midline (y=20 of the 40px box) sits on the rail's dot line. */
+.rail-fork {
+  position: relative;
+  flex: 0 0 120px;
+  height: 40px;
+  margin-top: -16.5px;
+}
+.rail-fork-lines {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+.fork-track,
+.fork-fill {
+  fill: none;
+  stroke-width: 1;
+}
+.fork-track { stroke: var(--border-dim); }
+.fork-fill {
+  stroke: var(--text2);
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  transition: stroke-dashoffset var(--t-slow) var(--ease-out);
+}
+.fork-fill[data-filled="true"] { stroke-dashoffset: 0; }
+
+.rail-lane {
+  position: absolute;
+  left: 50%;
+  min-width: 0;
+  transform: translate(-50%, -50%);
+}
+.rail-lane[data-lane="email"] { top: 15%; }
+.rail-lane[data-lane="sms"] { top: 85%; }
+.rail-lane .rail-dot { display: block; }
+.rail-lane .rail-label {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  white-space: nowrap;
+}
+.rail-lane[data-lane="email"] .rail-label { bottom: calc(100% + 5px); }
+.rail-lane[data-lane="sms"] .rail-label { top: calc(100% + 5px); }
 
 /* ─── SCENE VIEWPORT ─── */
 .story-viewport {
@@ -388,6 +437,34 @@ body.story-page {
   opacity: 0;
 }
 
+/* Both channels fire from the same notify step */
+.sys-channels {
+  display: flex;
+  gap: 8px;
+  margin: 10px 0 0 14px;
+}
+.sys-channel {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 8px;
+  border: 1px solid var(--border-dim);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  color: var(--text);
+  opacity: 0;
+  transform: translateY(4px);
+  transition: opacity var(--t-med) var(--ease-out), transform var(--t-med) var(--ease-out);
+}
+.sys-channel .sys-action-check { width: 11px; height: 11px; font-size: 7px; }
+[data-sys-phase="notify"] .sys-channel {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 0.35s;
+}
+[data-sys-phase="notify"] .sys-channel + .sys-channel { transition-delay: 0.55s; }
+
 @keyframes sys-fade-out { 0% { opacity: 1; } 100% { opacity: 0; } }
 @keyframes sys-fade-in { 0% { opacity: 0; } 100% { opacity: 1; } }
 
@@ -418,10 +495,10 @@ body.story-page {
   flex-shrink: 0;
 }
 
-/* ─── ACT 3: REALISTIC PHONE (notification → email → landing) ───
-   assets/phone-notification.webp, phone-email.png and phone-landing.png
-   share the exact same mockup template and canvas size, so crossfading
-   between them reads as one continuous device, not a scene cut. */
+/* ─── ACT 3: REALISTIC PHONE (email path → SMS path → landing) ───
+   Every phone-*.png/webp shares the exact same mockup template and
+   canvas size, so crossfading between them reads as one continuous
+   device, not a scene cut. */
 .phone-mockup {
   position: relative;
   width: 224px;
@@ -444,19 +521,34 @@ body.story-page {
 }
 [data-phone-state="notify"] .phone-mockup-img[data-state="notify"],
 [data-phone-state="email"] .phone-mockup-img[data-state="email"],
+[data-phone-state="sms-notify"] .phone-mockup-img[data-state="sms-notify"],
+[data-phone-state="sms"] .phone-mockup-img[data-state="sms"],
 [data-phone-state="landing"] .phone-mockup-img[data-state="landing"] {
   opacity: 1;
+}
+
+/* Channel handoff — a quiet dip as the story switches from the email
+   lane to the SMS lane, and again as both converge on the landing page */
+[data-channel="sms"] .phone-mockup { animation: channel-swap var(--t-slow) var(--ease-out); }
+[data-channel="both"] .phone-mockup { animation: channel-converge var(--t-slow) var(--ease-out); }
+@keyframes channel-swap {
+  0%, 100% { transform: scale(1); }
+  40% { transform: scale(0.95); }
+}
+@keyframes channel-converge {
+  0%, 100% { transform: scale(1); }
+  40% { transform: scale(0.95); }
 }
 
 /* Notification entrance — a couple of quiet attention pulses around the
    real notification card, measured from assets/phone-notification.webp */
 .notif-pulse {
   position: absolute;
-  left: 6.5%;
-  width: 87%;
-  top: 35.5%;
-  height: 9.5%;
-  border-radius: 16px;
+  left: 8.7%;
+  width: 83.1%;
+  top: 75.3%;
+  height: 7.2%;
+  border-radius: 14px;
   border: 1.5px solid transparent;
   opacity: 0;
   pointer-events: none;
@@ -473,11 +565,11 @@ body.story-page {
 /* Tap ripple — fires the instant the notification is "tapped" open */
 .notif-tap-ripple {
   position: absolute;
-  left: 6.5%;
-  width: 87%;
-  top: 35.5%;
-  height: 9.5%;
-  border-radius: 16px;
+  left: 8.7%;
+  width: 83.1%;
+  top: 75.3%;
+  height: 7.2%;
+  border-radius: 14px;
   pointer-events: none;
   opacity: 0;
 }
@@ -531,6 +623,64 @@ body.story-page {
   58% { opacity: 0.4; transform: translateY(0) scale(1.9); }
   60% { opacity: 0; }
   100% { opacity: 0; }
+}
+
+/* ─── SMS PATH — measured from assets/phone-sms-notification.webp
+   (Messages banner) and assets/phone-sms.png (go.dsg.com link) ─── */
+.sms-notif-pulse,
+.sms-notif-ripple {
+  position: absolute;
+  left: 8.7%;
+  width: 83.1%;
+  top: 75.3%;
+  height: 7.2%;
+  border-radius: 14px;
+  opacity: 0;
+  pointer-events: none;
+}
+.sms-notif-pulse { border: 1.5px solid transparent; }
+[data-phone-state="sms-notify"] .sms-notif-pulse {
+  animation: notif-pulse-ring 1.1s var(--ease-out) 0.5s 2;
+}
+[data-sms-tapped="true"] .sms-notif-ripple {
+  animation: notif-ripple 0.6s var(--ease-out) both;
+}
+
+.sms-link-highlight {
+  position: absolute;
+  left: 10.5%;
+  width: 44%;
+  top: 40.5%;
+  height: 5.4%;
+  border: 1.5px solid transparent;
+  border-radius: 6px;
+  opacity: 0;
+  transition: opacity var(--t-fast) var(--ease-out);
+}
+[data-sms-link-active="true"] .sms-link-highlight {
+  opacity: 1;
+  animation: sms-link-pulse 1.5s var(--ease-out) infinite;
+}
+/* The link sits on a light bubble, so the ring uses the link's own blue */
+@keyframes sms-link-pulse {
+  0%, 100% { border-color: rgba(10,132,255,0.0); box-shadow: 0 0 0 0 rgba(10,132,255,0.0); }
+  40% { border-color: rgba(10,132,255,0.7); box-shadow: 0 0 0 5px rgba(10,132,255,0.14); }
+}
+
+.sms-link-tap-dot {
+  position: absolute;
+  left: 28.4%;
+  top: 44.4%;
+  width: 17px; height: 17px;
+  margin: -8.5px 0 0 -8.5px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.92);
+  box-shadow: 0 0 0 1px rgba(0,0,0,0.18), 0 2px 6px rgba(0,0,0,0.2);
+  opacity: 0;
+  transform: translateY(70px) scale(0.6);
+}
+[data-sms-link-active="true"] .sms-link-tap-dot {
+  animation: cta-tap-land 2s var(--ease-snap) 0.4s both;
 }
 
 /* ─── CAPTION ─── */
@@ -591,6 +741,8 @@ body.story-page {
 .story-shell.is-reduced-motion .product-card-img,
 .story-shell.is-reduced-motion .phone-mockup-img,
 .story-shell.is-reduced-motion .sys-action-line,
+.story-shell.is-reduced-motion .sys-channel,
+.story-shell.is-reduced-motion .fork-fill,
 .story-shell.is-reduced-motion .rail-dot,
 .story-shell.is-reduced-motion .rail-label,
 .story-shell.is-reduced-motion .rail-connector::after {
@@ -602,16 +754,25 @@ body.story-page {
 .story-shell.is-reduced-motion .card-tap-dot,
 .story-shell.is-reduced-motion .notif-pulse,
 .story-shell.is-reduced-motion .notif-tap-ripple,
-.story-shell.is-reduced-motion .cta-tap-dot {
+.story-shell.is-reduced-motion .cta-tap-dot,
+.story-shell.is-reduced-motion .sms-notif-pulse,
+.story-shell.is-reduced-motion .sms-notif-ripple,
+.story-shell.is-reduced-motion .sms-link-tap-dot {
   animation: none !important;
   opacity: 0 !important;
 }
-.story-shell.is-reduced-motion .cta-highlight {
+.story-shell.is-reduced-motion .cta-highlight,
+.story-shell.is-reduced-motion .sms-link-highlight,
+.story-shell.is-reduced-motion .phone-mockup {
   animation: none !important;
 }
 .story-shell.is-reduced-motion [data-cta-active="true"] .cta-highlight {
   opacity: 1 !important;
   border-color: rgba(255,255,255,0.5) !important;
+}
+.story-shell.is-reduced-motion [data-sms-link-active="true"] .sms-link-highlight {
+  opacity: 1 !important;
+  border-color: rgba(10,132,255,0.6) !important;
 }
 
 /* System panel — skip the checking pulse and land straight on results */
@@ -641,4 +802,5 @@ body.story-page {
   .product-card { width: 230px; height: 395px; }
   .sys-panel { width: 240px; }
   .phone-mockup { width: 194px; height: 399px; }
+  .rail-fork { flex-basis: 84px; }
 }

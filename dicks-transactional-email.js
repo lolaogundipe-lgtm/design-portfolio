@@ -14,10 +14,13 @@
     gmailNotification:  2200, // scene 5 — pull back to the athlete's phone
     emailOpened:        1600, // scene 6 — tap notification → Gmail opens
     ctaInteraction:      2400, // scene 7 — read, spotlight + tap the CTA
-    landingPage:         3000  // scene 8 — arrive at the landing page, hold
+    smsNotification:    2200, // scene 8 — the same offer arrives as a text
+    smsOpened:           1600, // scene 9 — tap notification → Messages opens
+    smsLinkTap:          2400, // scene 10 — spotlight + tap the link
+    landingPage:         3000  // scene 11 — both paths arrive at the landing page, hold
   };
 
-  var SCENE_KEYS = ['addToCart', 'addedToCart', 'checkingStore', 'checkingShip', 'notifyTriggered', 'gmailNotification', 'emailOpened', 'ctaInteraction', 'landingPage'];
+  var SCENE_KEYS = ['addToCart', 'addedToCart', 'checkingStore', 'checkingShip', 'notifyTriggered', 'gmailNotification', 'emailOpened', 'ctaInteraction', 'smsNotification', 'smsOpened', 'smsLinkTap', 'landingPage'];
   var DURATIONS = SCENE_KEYS.map(function (k) { return TIMING[k]; });
   var OFFSETS = DURATIONS.reduce(function (acc, d) {
     acc.push((acc.length ? acc[acc.length - 1] : 0) + d);
@@ -31,32 +34,42 @@
     'Item added — one Cloudnova 2, size 9.',
     'Order fulfillment checks store pickup.',
     'None on hand there — it checks shipping instead.',
-    'Available to ship, so it notifies the customer.',
+    'Available to ship, so it reaches out by email and SMS.',
     'A Gmail notification lands on their phone.',
     'They tap it open to see what happened.',
     'They review the fix and tap to continue.',
-    'One tap later, they’re exactly where they need to be.'
+    'The same offer lands by text, too.',
+    'They open the message from DICK’S.',
+    'One tap on the link to review their options.',
+    'One offer. Two channels. One destination.'
   ];
 
-  // Rail node state per scene, in order [cart, system, notify, email, landing]
+  // Rail node state per scene, in order [cart, system, notify, email, sms, landing]
+  var RAIL_KEYS = ['cart', 'system', 'notify', 'email', 'sms', 'landing'];
   var RAIL_STATES = [
-    ['current', 'upcoming', 'upcoming', 'upcoming', 'upcoming'],
-    ['current', 'upcoming', 'upcoming', 'upcoming', 'upcoming'],
-    ['passed', 'current', 'upcoming', 'upcoming', 'upcoming'],
-    ['passed', 'current', 'upcoming', 'upcoming', 'upcoming'],
-    ['passed', 'current', 'upcoming', 'upcoming', 'upcoming'],
-    ['passed', 'passed', 'current', 'upcoming', 'upcoming'],
-    ['passed', 'passed', 'passed', 'current', 'upcoming'],
-    ['passed', 'passed', 'passed', 'current', 'upcoming'],
-    ['passed', 'passed', 'passed', 'passed', 'current']
+    ['current', 'upcoming', 'upcoming', 'upcoming', 'upcoming', 'upcoming'],
+    ['current', 'upcoming', 'upcoming', 'upcoming', 'upcoming', 'upcoming'],
+    ['passed', 'current', 'upcoming', 'upcoming', 'upcoming', 'upcoming'],
+    ['passed', 'current', 'upcoming', 'upcoming', 'upcoming', 'upcoming'],
+    ['passed', 'passed', 'current', 'upcoming', 'upcoming', 'upcoming'],
+    ['passed', 'passed', 'passed', 'current', 'upcoming', 'upcoming'],
+    ['passed', 'passed', 'passed', 'current', 'upcoming', 'upcoming'],
+    ['passed', 'passed', 'passed', 'current', 'upcoming', 'upcoming'],
+    ['passed', 'passed', 'passed', 'passed', 'current', 'upcoming'],
+    ['passed', 'passed', 'passed', 'passed', 'current', 'upcoming'],
+    ['passed', 'passed', 'passed', 'passed', 'current', 'upcoming'],
+    ['passed', 'passed', 'passed', 'passed', 'passed', 'current']
   ];
 
-  var LAYER_BY_SCENE        = ['card', 'card', 'system', 'system', 'system', 'phone', 'phone', 'phone', 'phone'];
-  var CARD_PHASE_BY_SCENE   = ['add', 'added', 'added', 'added', 'added', 'added', 'added', 'added', 'added'];
-  var SYS_PHASE_BY_SCENE    = ['store', 'store', 'store', 'ship', 'notify', 'notify', 'notify', 'notify', 'notify'];
-  var PHONE_STATE_BY_SCENE  = ['notify', 'notify', 'notify', 'notify', 'notify', 'notify', 'email', 'email', 'landing'];
-  var NOTIF_TAPPED_BY_SCENE = [false, false, false, false, false, false, true, true, true];
-  var CTA_ACTIVE_BY_SCENE   = [false, false, false, false, false, false, false, true, false];
+  var LAYER_BY_SCENE          = ['card', 'card', 'system', 'system', 'system', 'phone', 'phone', 'phone', 'phone', 'phone', 'phone', 'phone'];
+  var CARD_PHASE_BY_SCENE     = ['add', 'added', 'added', 'added', 'added', 'added', 'added', 'added', 'added', 'added', 'added', 'added'];
+  var SYS_PHASE_BY_SCENE      = ['store', 'store', 'store', 'ship', 'notify', 'notify', 'notify', 'notify', 'notify', 'notify', 'notify', 'notify'];
+  var PHONE_STATE_BY_SCENE    = ['notify', 'notify', 'notify', 'notify', 'notify', 'notify', 'email', 'email', 'sms-notify', 'sms', 'sms', 'landing'];
+  var CHANNEL_BY_SCENE        = ['email', 'email', 'email', 'email', 'email', 'email', 'email', 'email', 'sms', 'sms', 'sms', 'both'];
+  var NOTIF_TAPPED_BY_SCENE   = [false, false, false, false, false, false, true, true, true, true, true, true];
+  var CTA_ACTIVE_BY_SCENE     = [false, false, false, false, false, false, false, true, false, false, false, false];
+  var SMS_TAPPED_BY_SCENE     = [false, false, false, false, false, false, false, false, false, true, true, true];
+  var SMS_LINK_ACTIVE_BY_SCENE = [false, false, false, false, false, false, false, false, false, false, true, false];
 
   /* ── DOM ─────────────────────────────────────────────────────── */
   var shell = document.getElementById('storyShell');
@@ -66,7 +79,9 @@
   var playPauseBtn = document.getElementById('playPauseBtn');
   var replayBtn = document.getElementById('replayBtn');
   var railNodes = Array.prototype.slice.call(stage.querySelectorAll('.rail-node'));
-  var railConnectors = Array.prototype.slice.call(stage.querySelectorAll('.rail-connector'));
+  // Connectors and fork lines declare when they fill: data-fill="node"
+  // fills once that node is reached, "node:passed" once it's behind us.
+  var railFills = Array.prototype.slice.call(stage.querySelectorAll('[data-fill]'));
   var layers = Array.prototype.slice.call(stage.querySelectorAll('.layer'));
 
   if (!stage) return;
@@ -98,19 +113,25 @@
     stage.setAttribute('data-phone-state', PHONE_STATE_BY_SCENE[index]);
     stage.setAttribute('data-notif-tapped', String(NOTIF_TAPPED_BY_SCENE[index]));
     stage.setAttribute('data-cta-active', String(CTA_ACTIVE_BY_SCENE[index]));
+    stage.setAttribute('data-channel', CHANNEL_BY_SCENE[index]);
+    stage.setAttribute('data-sms-tapped', String(SMS_TAPPED_BY_SCENE[index]));
+    stage.setAttribute('data-sms-link-active', String(SMS_LINK_ACTIVE_BY_SCENE[index]));
 
     var activeLayer = LAYER_BY_SCENE[index];
     layers.forEach(function (layer) {
       layer.classList.toggle('is-active', layer.getAttribute('data-layer') === activeLayer);
     });
 
-    var states = RAIL_STATES[index];
-    railNodes.forEach(function (node, i) {
-      node.setAttribute('data-state', states[i]);
+    var states = {};
+    RAIL_KEYS.forEach(function (key, i) { states[key] = RAIL_STATES[index][i]; });
+    railNodes.forEach(function (node) {
+      node.setAttribute('data-state', states[node.getAttribute('data-node')]);
     });
-    railConnectors.forEach(function (connector, i) {
-      var nextState = states[i + 1];
-      connector.setAttribute('data-filled', String(nextState !== 'upcoming'));
+    railFills.forEach(function (el) {
+      var rule = el.getAttribute('data-fill').split(':');
+      var state = states[rule[0]];
+      var filled = rule[1] === 'passed' ? state === 'passed' : state !== 'upcoming';
+      el.setAttribute('data-filled', String(filled));
     });
 
     caption.textContent = CAPTIONS[index];

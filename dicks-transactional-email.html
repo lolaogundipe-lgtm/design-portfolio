@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fragment+Mono:ital,wght@0,400;1,400&family=Geist+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="icon" href="favicon.ico" sizes="any">
-<link rel="stylesheet" href="dicks-transactional-email.css?v=5">
+<link rel="stylesheet" href="dicks-transactional-email.css?v=8">
 </head>
 <body class="story-page">
 
@@ -23,33 +23,46 @@
 
   <div class="story-window">
     <div class="stts-chrome">
-      <span>ADD_TO_CART → SOURCING_CHECK → EMAIL → LANDING</span>
+      <span>ADD_TO_CART → SOURCING_CHECK → EMAIL + SMS → LANDING</span>
       <span>— □ ×</span>
     </div>
 
-    <section class="story-stage" id="storyStage" data-scene="0" data-card-phase="add" data-sys-phase="store" data-phone-state="notify" data-notif-tapped="false" data-cta-active="false" aria-roledescription="animation" aria-label="Add to cart through order sourcing, email, and landing page, animated sequence">
+    <section class="story-stage" id="storyStage" data-scene="0" data-card-phase="add" data-sys-phase="store" data-phone-state="notify" data-notif-tapped="false" data-cta-active="false" data-channel="email" data-sms-tapped="false" data-sms-link-active="false" aria-roledescription="animation" aria-label="Add to cart through order sourcing, then email and SMS paths converging on one landing page, animated sequence">
 
       <ol class="story-rail" aria-hidden="true">
         <li class="rail-node" data-node="cart" data-state="current">
           <span class="rail-dot"></span>
           <span class="rail-label">Cart</span>
         </li>
-        <li class="rail-connector" data-filled="false"></li>
+        <li class="rail-connector" data-fill="system" data-filled="false"></li>
         <li class="rail-node" data-node="system" data-state="upcoming">
           <span class="rail-dot"></span>
           <span class="rail-label">System</span>
         </li>
-        <li class="rail-connector" data-filled="false"></li>
+        <li class="rail-connector" data-fill="notify" data-filled="false"></li>
         <li class="rail-node" data-node="notify" data-state="upcoming">
           <span class="rail-dot"></span>
           <span class="rail-label">Notify</span>
         </li>
-        <li class="rail-connector" data-filled="false"></li>
-        <li class="rail-node" data-node="email" data-state="upcoming">
-          <span class="rail-dot"></span>
-          <span class="rail-label">Email</span>
+        <li class="rail-connector" data-fill="notify:passed" data-filled="false"></li>
+        <li class="rail-fork">
+          <svg class="rail-fork-lines" viewBox="0 0 120 40" preserveAspectRatio="none">
+            <path class="fork-track" d="M0 20 C18 20 18 6 36 6 L55 6 M65 6 L84 6 C102 6 102 20 120 20 M0 20 C18 20 18 34 36 34 L55 34 M65 34 L84 34 C102 34 102 20 120 20"/>
+            <path class="fork-fill" data-fill="notify:passed" data-filled="false" pathLength="1" d="M0 20 C18 20 18 6 36 6 L55 6"/>
+            <path class="fork-fill" data-fill="notify:passed" data-filled="false" pathLength="1" d="M0 20 C18 20 18 34 36 34 L55 34"/>
+            <path class="fork-fill" data-fill="landing" data-filled="false" pathLength="1" d="M65 6 L84 6 C102 6 102 20 120 20"/>
+            <path class="fork-fill" data-fill="landing" data-filled="false" pathLength="1" d="M65 34 L84 34 C102 34 102 20 120 20"/>
+          </svg>
+          <span class="rail-node rail-lane" data-node="email" data-lane="email" data-state="upcoming">
+            <span class="rail-dot"></span>
+            <span class="rail-label">Email</span>
+          </span>
+          <span class="rail-node rail-lane" data-node="sms" data-lane="sms" data-state="upcoming">
+            <span class="rail-dot"></span>
+            <span class="rail-label">SMS</span>
+          </span>
         </li>
-        <li class="rail-connector" data-filled="false"></li>
+        <li class="rail-connector" data-fill="landing" data-filled="false"></li>
         <li class="rail-node" data-node="landing" data-state="upcoming">
           <span class="rail-dot"></span>
           <span class="rail-label">Landing</span>
@@ -102,21 +115,31 @@
                 <span class="sys-prompt">$</span> notify customer
                 <span class="sys-action-check" aria-hidden="true">✓</span>
               </p>
+              <div class="sys-channels">
+                <span class="sys-channel">EMAIL <span class="sys-action-check" aria-hidden="true">✓</span></span>
+                <span class="sys-channel">SMS <span class="sys-action-check" aria-hidden="true">✓</span></span>
+              </div>
             </div>
           </div>
         </div>
 
-        <!-- ACT 3 — REALISTIC PHONE (notification → email → landing) -->
+        <!-- ACT 3 — REALISTIC PHONE (email path → SMS path → landing) -->
         <div class="layer layer-phone" data-layer="phone">
           <div class="phone-mockup">
-            <img class="phone-mockup-img" data-state="notify" src="assets/phone-notification.webp" alt="Lock screen with a Gmail push notification from DICK'S Sporting Goods: Hi Lauren, the store you chose doesn't have your item in stock.">
+            <img class="phone-mockup-img" data-state="notify" src="assets/phone-notification.webp?v=2" alt="Lock screen with a Gmail push notification from DICK'S Sporting Goods: Hi Lauren, the store you chose doesn't have your item in stock.">
             <img class="phone-mockup-img" data-state="email" src="assets/phone-email.png" alt="Gmail inbox open to the DICK'S Sporting Goods email, subject Review Order: Your item is unavailable, with a Review Shipping Information button.">
+            <img class="phone-mockup-img" data-state="sms-notify" src="assets/phone-sms-notification.webp" alt="Lock screen with a Messages notification from DICK'S Sporting Goods short code 21215.">
+            <img class="phone-mockup-img" data-state="sms" src="assets/phone-sms.png" alt="Messages thread from DICK'S Sporting Goods: your item from order #84271593604 is unavailable at DICK'S Riverdale Village. Review and confirm available options by Fri 09/25 at 8 PM, with a go.dsg.com link.">
             <img class="phone-mockup-img" data-state="landing" src="assets/phone-landing.png" alt="DICK'S Sporting Goods landing page: Not In Stores Near You, with a Confirm Shipping button and delivery address.">
 
             <span class="notif-pulse" aria-hidden="true"></span>
             <span class="notif-tap-ripple" aria-hidden="true"></span>
             <span class="cta-highlight" aria-hidden="true"></span>
             <span class="cta-tap-dot" aria-hidden="true"></span>
+            <span class="sms-notif-pulse" aria-hidden="true"></span>
+            <span class="sms-notif-ripple" aria-hidden="true"></span>
+            <span class="sms-link-highlight" aria-hidden="true"></span>
+            <span class="sms-link-tap-dot" aria-hidden="true"></span>
           </div>
         </div>
 
@@ -136,6 +159,6 @@
 
 </main>
 
-<script src="dicks-transactional-email.js"></script>
+<script src="dicks-transactional-email.js?v=2"></script>
 </body>
 </html>
