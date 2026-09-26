@@ -3,7 +3,21 @@
   "framework": null,
   "buildCommand": "",
   "rewrites": [
-    { "source": "/services", "destination": "/services.html" },
-    { "source": "/services/", "destination": "/services.html" }
+    {
+      "source": "/services",
+      "destination": "/services.html"
+    },
+    {
+      "source": "/services/",
+      "destination": "/services.html"
+    },
+    {
+      "source": "/work",
+      "destination": "/work.html"
+    },
+    {
+      "source": "/work/",
+      "destination": "/work.html"
+    }
   ]
 }

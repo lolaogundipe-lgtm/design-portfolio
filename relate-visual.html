@@ -6,36 +6,43 @@
 <title>Rebuilding Relate's Design System — Lola Ogundipe</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fragment+Mono:ital,wght@0,400;1,400&family=Geist+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fragment+Mono:ital,wght@0,400;1,400&family=Geist:wght@400;500&family=Geist+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&family=Silkscreen&display=swap" rel="stylesheet">
 <link rel="icon" href="favicon.ico" sizes="any">
 <link rel="icon" type="image/png" href="favicon-192.png">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="redesign.css?v=6">
+<link rel="stylesheet" href="redesign-cs.css?v=2">
 </head>
-<body>
+<body class="rd rd-cs">
 
-<div id="cursor"></div>
-<div id="cursor-follow"></div>
-<div id="cursor-label"></div>
+<div id="siteContent">
 
-<nav id="nav">
-  <a href="index.html" class="nav-logo">
-    <span>Lola/</span>
-    <span>Ogundipe</span>
-  </a>
-  <div class="nav-links">
-    <a href="index.html" class="nav-link">Home</a>
-    <a href="index.html#work" class="nav-link is-active">&lt; Work &gt;</a>
-    <a href="services.html" class="nav-link">Services</a>
-    <a href="index.html#about" class="nav-link">About</a>
-    <a href="index.html#skills" class="nav-link">Tools</a>
+<!-- HEADER -->
+<header class="rd-header">
+  <a href="index.html" class="rd-logo" aria-label="Lola Ogundipe — home"></a>
+  <div class="rd-meta rd-mono" aria-hidden="true">
+    <span data-scramble>Lola Ogundipe . Design</span>
+    <span data-scramble>40.71°N, 74.00°W</span>
+    <span id="rdClock" class="rd-live" data-scramble>NYC</span>
   </div>
-  <a href="index.html#contact" class="nav-cta">Contact</a>
-</nav>
+  <div class="rd-icons">
+    <a href="https://www.linkedin.com/in/lola-ogundipe/" target="_blank" rel="noopener" aria-label="LinkedIn">
+      <svg viewBox="0 0 16 16" fill="currentColor"><path d="M3.6 5.5H1V15h2.6V5.5zM2.3 1A1.5 1.5 0 1 0 2.3 4a1.5 1.5 0 0 0 0-3zM15 9.6c0-2.5-.6-4.3-3.4-4.3-1.4 0-2.3.7-2.6 1.4V5.5H6.5V15h2.6v-4.7c0-1.2.3-2.4 1.8-2.4s1.5 1.4 1.5 2.5V15H15V9.6z"/></svg>
+    </a>
+    <a href="https://drive.google.com/file/d/182oYnzfOsr-Dm9d5h4mqqN-zahc0xmPP/view" target="_blank" rel="noopener" aria-label="Resume">
+      <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M3 1.5h6.5L13 5v9.5H3z"/><path d="M9.5 1.5V5H13M5.5 8h5M5.5 10.5h5"/></svg>
+    </a>
+    <a href="mailto:lolaogundipe@gmail.com?subject=Hey%20Lola%2C%20I%20would%20love%20to%20chat%20more" aria-label="Email">
+      <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3"><rect x="1.5" y="3" width="13" height="10" rx="1"/><path d="M1.5 4l6.5 5 6.5-5"/></svg>
+    </a>
+  </div>
+  <button type="button" class="rd-burger" id="rdBurger" aria-label="Open menu" aria-expanded="false" aria-controls="rdMenu"><span></span><span></span></button>
+</header>
 
 <!-- PAGE HEADER -->
 <header class="cs-page-header cs-wide-copy">
-  <a href="index.html#work" class="cs-back-link">← Back to work</a>
+  <a href="work.html" class="cs-back-link">← Back to work</a>
   <div class="cs-eyebrow">Case study 02 · Google · Design Systems</div>
   <h1 class="cs-page-title">Rebuilding Relate's<br>Design System</h1>
   <p class="cs-page-sub">Overhauling the visual system of an accessibility app by bringing Material 3 to Project Relate while custom-tuning components for users with motor, cognitive, and low-vision needs.</p>
@@ -358,29 +365,56 @@
   </div>
 </section>
 
-<a href="live-transcribe.html" class="cs-next">
+<a href="strand.html" class="cs-next">
   <div>
-    <div class="cs-next-label">Next case study · 03</div>
-    <div class="cs-next-title">Live Transcribe<br>Dual Screen</div>
+    <div class="cs-next-label">Next case study · 04</div>
+    <div class="cs-next-title">Strand</div>
   </div>
   <div class="cs-next-arrow">→</div>
 </a>
 
-<section id="contact">
-  <div class="contact-eyebrow reveal">Let's work together</div>
-  <h2 class="contact-headline reveal">Have a problem<br><em>worth solving?</em></h2>
-  <div class="contact-links reveal">
-    <a href="mailto:lolaogundipe@gmail.com?subject=Hey%20Lola%2C%20I%27ve%20got%20a%20cool%20project%20I%20want%20to%20collaborate%20on" class="contact-link primary">Say hello</a>
-    <a href="https://www.linkedin.com/in/lola-ogundipe/" target="_blank" class="contact-link">LinkedIn</a>
-    <a href="https://drive.google.com/file/d/182oYnzfOsr-Dm9d5h4mqqN-zahc0xmPP/view" target="_blank" class="contact-link">Resume</a>
+<section class="rd-contact" id="contact">
+  <span class="rd-mono" data-scramble>Contact . Say hello</span>
+  <h2 class="rd-contact-title rd-lines"><span>Have a problem</span><span><em>worth solving<span class="rd-accent">?</span></em></span></h2>
+  <div class="rd-contact-links rd-rise">
+    <a href="mailto:lolaogundipe@gmail.com?subject=Hey%20Lola%2C%20I%20would%20love%20to%20chat%20more" class="rd-pill rd-pill--solid">Say hello</a>
+    <a href="https://www.linkedin.com/in/lola-ogundipe/" target="_blank" rel="noopener" class="rd-pill">LinkedIn ↗</a>
+    <a href="https://drive.google.com/file/d/182oYnzfOsr-Dm9d5h4mqqN-zahc0xmPP/view" target="_blank" rel="noopener" class="rd-pill">Resume ↗</a>
   </div>
 </section>
 
-<footer>
-  <div class="footer-text">© 2024 Lola Ogundipe — UX Designer</div>
-  <div class="footer-text">New York · Available for freelance & full-time</div>
+<footer class="rd-footer">
+  <div class="rd-footer-name" aria-hidden="true">Lola Ogundipe</div>
+  <div class="rd-footer-row rd-mono">
+    <span>© 2026 Lola Ogundipe — Product Designer</span>
+    <span>New York · Available for freelance &amp; full-time</span>
+  </div>
 </footer>
 
+</div><!-- /#siteContent -->
+
+<!-- MENU OVERLAY -->
+<div class="rd-menu" id="rdMenu" role="dialog" aria-modal="true" aria-label="Site menu" aria-hidden="true">
+  <button type="button" class="rd-menu-close" aria-label="Close menu">
+    <svg viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M2 2l14 14M16 2L2 16"/></svg>
+  </button>
+  <nav aria-label="Primary">
+    <ol class="rd-menu-list">
+      <li class="rd-menu-item"><a class="rd-menu-link" href="index.html"><span class="rd-menu-num">01</span><span class="rd-menu-label">Index</span><span class="rd-menu-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 12h17M14 6l6 6-6 6"/></svg></span></a></li>
+      <li class="rd-menu-item"><a class="rd-menu-link" href="work.html"><span class="rd-menu-num">02</span><span class="rd-menu-label">Work</span><span class="rd-menu-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 12h17M14 6l6 6-6 6"/></svg></span></a></li>
+      <li class="rd-menu-item"><a class="rd-menu-link" href="services.html"><span class="rd-menu-num">03</span><span class="rd-menu-label">Services</span><span class="rd-menu-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 12h17M14 6l6 6-6 6"/></svg></span></a></li>
+      <li class="rd-menu-item"><a class="rd-menu-link" href="index.html#about"><span class="rd-menu-num">04</span><span class="rd-menu-label">About</span><span class="rd-menu-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 12h17M14 6l6 6-6 6"/></svg></span></a></li>
+      <li class="rd-menu-item"><a class="rd-menu-link" href="index.html#contact"><span class="rd-menu-num">05</span><span class="rd-menu-label">Contact</span><span class="rd-menu-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 12h17M14 6l6 6-6 6"/></svg></span></a></li>
+    </ol>
+  </nav>
+  <div class="rd-menu-foot rd-mono">
+    <a href="mailto:lolaogundipe@gmail.com">lolaogundipe@gmail.com</a>
+    <a href="https://www.linkedin.com/in/lola-ogundipe/" target="_blank" rel="noopener">LinkedIn ↗</a>
+    <span>New York · Available for freelance &amp; full-time</span>
+  </div>
+</div>
+
 <script src="script.js"></script>
+<script src="redesign.js?v=4"></script>
 </body>
 </html>
