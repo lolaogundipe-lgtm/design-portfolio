@@ -395,22 +395,23 @@ body.rd .rd-menu nav {
   translate: 0 -50%;
   will-change: transform;
 }
+/* Each frame takes its image's own proportions (tall phones, wide
+   desktop shots) so nothing is cropped. */
 .rd-strip-item {
   position: relative;
   flex: none;
   height: 100%;
-  aspect-ratio: 4 / 5;
+  margin: 0;
   overflow: hidden;
-  background: #fff;
   box-shadow: 0 30px 60px -30px rgba(0,0,0,0.35);
+  transition: transform 0.8s var(--rd-ease);
 }
 .rd-strip-item img {
-  width: 100%;
+  width: auto;
   height: 100%;
-  object-fit: cover;
-  transition: transform 1.2s var(--rd-ease), filter 0.6s;
+  object-fit: contain;
 }
-.rd-strip-item:hover img { transform: scale(1.04); }
+.rd-strip-item:hover { transform: translateY(-6px); }
 .rd-strip-item figcaption {
   position: absolute;
   left: 10px;
@@ -446,21 +447,30 @@ body.rd .rd-menu nav {
 
 /* ─── SELECTED WORK LIST ────────────────────────────── */
 .rd-selected {
-  display: grid;
-  grid-template-columns: minmax(200px, 1fr) 2.4fr auto;
-  gap: 32px;
   margin: 0 var(--rd-gutter);
   padding: 32px 0 clamp(80px, 14vh, 160px) !important;
   border-top: 1px solid var(--rd-line);
 }
+.rd-selected-head {
+  display: grid;
+  grid-template-columns: minmax(200px, 1fr) 2fr auto;
+  align-items: end;
+  gap: 24px 32px;
+  margin-bottom: 40px;
+}
 .rd-selected-blurb {
-  max-width: 24em;
+  max-width: 30em;
   font-size: 14px;
   line-height: 1.45;
   color: var(--rd-mute);
 }
-.rd-selected-blurb strong { color: var(--rd-ink); font-weight: 400; }
-.rd-selected-side { align-self: end; }
+.rd-cards {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 20px;
+}
+.rd-cards .rd-card-media { aspect-ratio: 4 / 5; }
+.rd-cards .rd-card-title { font-size: clamp(20px, 1.8vw, 26px); }
 
 .rd-list { list-style: none; margin: 0; padding: 40px 0 0; }
 .rd-list-item { position: relative; }
@@ -888,8 +898,9 @@ body.rd .stts-impact-label {
 /* ─── RESPONSIVE ────────────────────────────────────── */
 @media (max-width: 900px) {
   .rd-meta span:nth-child(n+2) { display: none; }
-  .rd-selected { grid-template-columns: 1fr; gap: 16px; }
-  .rd-selected-side { align-self: start; }
+  .rd-selected-head { grid-template-columns: 1fr; align-items: start; gap: 12px; }
+  .rd-cards { grid-template-columns: 1fr; gap: 48px; }
+  .rd-cards .rd-card-media { aspect-ratio: 1 / 1; }
   .rd-about { grid-template-columns: 1fr; }
   .rd-stats { grid-template-columns: repeat(2, 1fr); row-gap: 24px; }
   .rd-hero-frame { width: 34vw; }

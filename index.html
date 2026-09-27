@@ -12,7 +12,7 @@
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <link rel="stylesheet" href="style.css?v=svc1">
 <link rel="stylesheet" href="dicks-transactional-email.css?v=8">
-<link rel="stylesheet" href="redesign.css?v=6">
+<link rel="stylesheet" href="redesign.css?v=8">
 </head>
 <body class="rd">
 
@@ -91,27 +91,61 @@
   </div>
 </section>
 
-<!-- SELECTED WORK LIST -->
-<section class="rd-selected" aria-label="Selected work">
-  <p class="rd-selected-blurb rd-rise"><strong>Selected work</strong> across Google, retail growth, and independent builds: onboarding, design systems, lifecycle messaging, and accessibility-first features.</p>
-  <ul class="rd-list">
-    <li class="rd-list-item rd-rise"><a class="rd-list-link" href="relate-onboarding.html" data-preview="relate"><span class="rd-list-name">Project Relate</span><span class="rd-list-meta rd-mono">Google · Onboarding</span></a></li>
-    <li class="rd-list-item rd-rise" data-delay="1"><a class="rd-list-link" href="#work/save-the-sale" id="sttsCard" data-preview="stts"><span class="rd-list-name">Save the Sale</span><span class="rd-list-meta rd-mono">Growth · Email + SMS</span></a></li>
-    <li class="rd-list-item rd-rise" data-delay="2"><a class="rd-list-link" href="relate-visual.html" data-preview="visual"><span class="rd-list-name">Relate Design System</span><span class="rd-list-meta rd-mono">Google · Systems</span></a></li>
-    <li class="rd-list-item rd-rise" data-delay="3"><a class="rd-list-link" href="strand.html" data-preview="strand"><span class="rd-list-name">Strand</span><span class="rd-list-meta rd-mono">0 → 1 · Claude Code</span></a></li>
-    <li class="rd-list-item rd-rise"><a class="rd-list-link" href="live-transcribe.html" data-preview="lt"><span class="rd-list-name">Live Transcribe</span><span class="rd-list-meta rd-mono">Google · Foldable</span></a></li>
-    <li class="rd-list-item rd-rise" data-delay="1"><a class="rd-list-link" href="market-fresh.html" data-preview="mf"><span class="rd-list-name">Market Fresh</span><span class="rd-list-meta rd-mono">Web · Product</span></a></li>
-  </ul>
-  <div class="rd-selected-side">
+<!-- SELECTED WORK -->
+<section class="rd-selected" aria-labelledby="selected-title">
+  <div class="rd-selected-head">
+    <div>
+      <span class="rd-mono rd-kicker" data-scramble>Work . Selected</span>
+      <h2 class="rd-shead-title rd-lines" id="selected-title"><span>Selected work</span></h2>
+    </div>
+    <p class="rd-selected-blurb rd-rise">Three case studies across Google and DICK&#8217;S: growth, onboarding, lifecycle messaging, and design systems</p>
     <a href="work.html" class="rd-link-arrow">All Work <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M1 7h11M8 3l4 4-4 4"/></svg></a>
   </div>
-  <div class="rd-preview" aria-hidden="true">
-    <img data-key="relate" src="images/relate-onboarding-phonecase.webp" alt="">
-    <img data-key="stts" src="assets/phone-email.png" alt="">
-    <img data-key="visual" src="images/relate-iter-final.webp" alt="">
-    <img data-key="strand" src="images/strand-onboarding-01.png" alt="">
-    <img data-key="lt" src="images/live-transcribe-outside-screen.png" alt="">
-    <img data-key="mf" src="https://framerusercontent.com/images/9EjuP4xIyf7MbsX1CcFb7yETNjU.png" alt="">
+  <div class="rd-cards">
+    <a href="relate-onboarding.html" class="rd-card rd-rise">
+      <div class="rd-card-media rd-card-media--contain">
+        <img src="images/relate-onboarding-phonecase.webp" alt="Project Relate onboarding on a phone" loading="lazy">
+        <span class="rd-card-tag">Google · Onboarding</span>
+      </div>
+      <div class="rd-card-body">
+        <div>
+          <h3 class="rd-card-title">Designing Onboarding for Atypical Speech</h3>
+          <p class="rd-card-desc">Designed the first-run experience for users with atypical speech, reducing a 27% early abandonment cliff.</p>
+          <span class="rd-link-arrow">Read Case Study <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M1 7h11M8 3l4 4-4 4"/></svg></span>
+        </div>
+        <span class="rd-card-year rd-mono">01</span>
+      </div>
+    </a>
+
+    <a href="#work/save-the-sale" class="rd-card rd-rise" id="sttsCard" data-delay="1">
+      <div class="rd-card-media rd-card-media--contain">
+        <img src="assets/phone-email.png" alt="Save the Sale lifecycle email on a phone" loading="lazy">
+        <span class="rd-card-tag">Growth · Email + SMS</span>
+      </div>
+      <div class="rd-card-body">
+        <div>
+          <h3 class="rd-card-title">Recovering $7.65M Through Lifecycle Growth Design</h3>
+          <p class="rd-card-desc">Turning cancelled orders into recovered revenue that raised offer acceptance from 10.2% to 44.7%.</p>
+          <span class="rd-link-arrow">Read Case Study <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M1 7h11M8 3l4 4-4 4"/></svg></span>
+        </div>
+        <span class="rd-card-year rd-mono">02</span>
+      </div>
+    </a>
+
+    <a href="relate-visual.html" class="rd-card rd-rise" data-delay="2">
+      <div class="rd-card-media">
+        <img src="images/relate-iter-final.webp" alt="Relate design system, final iteration" loading="lazy">
+        <span class="rd-card-tag">Google · Design Systems</span>
+      </div>
+      <div class="rd-card-body">
+        <div>
+          <h3 class="rd-card-title">Rebuilding Relate's Design System</h3>
+          <p class="rd-card-desc">Redesigned and built new components to modernize an accessibility app. Tap accuracy climbed from 68% to 94%.</p>
+          <span class="rd-link-arrow">Read Case Study <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M1 7h11M8 3l4 4-4 4"/></svg></span>
+        </div>
+        <span class="rd-card-year rd-mono">03</span>
+      </div>
+    </a>
   </div>
 </section>
 
