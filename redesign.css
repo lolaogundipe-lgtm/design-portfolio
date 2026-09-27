@@ -690,6 +690,9 @@ body.rd footer.rd-footer {
 .rd-card-media--contain { background: #e9e7e2; }
 .rd-card-media--contain img { object-fit: contain; padding: 10% 18%; }
 .rd-card-media--dark { background: #0f0f0f; }
+/* Landscape shots: show the whole image instead of cropping to the square. */
+.rd-card-media--wide { background: #e9e7e2; }
+.rd-card-media--wide img { object-fit: contain; padding: 8%; }
 .rd-card-tag {
   position: absolute;
   top: 12px;
