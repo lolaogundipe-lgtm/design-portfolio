@@ -228,7 +228,7 @@ body.rd .rd-menu nav {
 .rd-menu-foot a:hover { color: var(--rd-paper-ink); }
 
 /* ─── HERO (pinned, scroll-driven) ──────────────────── */
-.rd-hero { position: relative; height: 260vh; }
+.rd-hero { position: relative; height: 340vh; }
 .rd-hero-pin {
   position: sticky;
   top: 0;
@@ -243,28 +243,88 @@ body.rd .rd-menu nav {
   width: min(16vw, 180px);
   aspect-ratio: 1;
   translate: -50% -55%;
-  background: #000;
+  background: #0a0a0a;
   overflow: hidden;
-  will-change: width, aspect-ratio;
+  z-index: 2;
+  will-change: width, height;
 }
-.rd-hero-frame img {
+
+/* ─── HERO SCENE: sketch → design → build ───────────── */
+.hs-scene { position: absolute; inset: 0; display: block; width: 100%; height: 100%; }
+.hs-sans { font-family: var(--rd-sans); }
+.hs-serif { font-family: var(--rd-serif); }
+.hs-mono { font-family: var(--rd-mono); }
+.hs-hand { font-family: 'Caveat', cursive; font-weight: 500; fill: #2a2a2a; }
+.hs-hand--red { fill: var(--rd-red); }
+
+/* Sketch: pencil strokes are drawn by scroll (stroke-dashoffset set in JS). */
+.hs-draw {
+  fill: none;
+  stroke: #2a2a2a;
+  stroke-width: 2.4;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+}
+.hs-draw--red { stroke: var(--rd-red); stroke-width: 3; }
+.hs-note { opacity: 0; }
+
+/* Design: editor state */
+.hs-layer-hl { fill: rgba(13, 153, 255, 0.28); opacity: 0; transition: opacity 0.3s; }
+.hs-layer-hl.is-on { opacity: 1; }
+.hs-red { opacity: 0; transition: opacity 0.35s; }
+.hs-red.is-on { opacity: 1; }
+.hs-btn,
+.hs-fill-swatch { fill: #3a3a3a; transition: fill 0.6s var(--rd-ease); }
+.hs-scene.is-colored .hs-btn,
+.hs-scene.is-colored .hs-fill-swatch { fill: var(--rd-red); }
+.hs-hex-b { opacity: 0; }
+.hs-scene.is-colored .hs-hex-a { opacity: 0; }
+.hs-scene.is-colored .hs-hex-b { opacity: 1; }
+
+/* Build: code + terminal */
+.hs-code { white-space: pre; }
+.hs-code--tag { fill: #e8e6e1; }
+.hs-code--text { fill: #f5f3ef; }
+.hs-code--prop { fill: #9a9892; }
+.hs-code--accent { fill: var(--rd-red); }
+.hs-term { opacity: 0; }
+.hs-shipped { opacity: 0; transform-box: fill-box; transform-origin: center; }
+
+/* Stage indicator, pinned inside the frame */
+.rd-hero-stages {
   position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+  left: 14px;
+  bottom: 14px;
+  display: flex;
+  gap: 14px;
+  margin: 0;
+  padding: 7px 12px;
+  list-style: none;
+  border-radius: 999px;
+  background: rgba(8, 8, 8, 0.72);
+  backdrop-filter: blur(6px);
+  font-family: var(--rd-mono);
+  font-size: 11px;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: var(--rd-mute);
+  white-space: nowrap;
   opacity: 0;
-  filter: grayscale(1) contrast(1.05);
-  transition: opacity 0.9s var(--rd-ease);
-}
-.rd-hero-frame img.is-on { opacity: 1; }
-.rd-hero-frame::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(120% 90% at 50% 40%, transparent 40%, rgba(0,0,0,0.55));
   pointer-events: none;
 }
+.rd-hero-stages li { display: flex; align-items: center; gap: 7px; transition: color 0.3s; }
+.rd-hero-stages li::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  background: currentColor;
+  opacity: 0.35;
+  transition: background 0.3s, opacity 0.3s;
+}
+.rd-hero-stages li.is-active { color: var(--rd-ink); }
+.rd-hero-stages li.is-active::before { background: var(--rd-red); opacity: 1; }
 
 .rd-marquee {
   position: absolute;
@@ -291,6 +351,7 @@ body.rd .rd-menu nav {
 
 .rd-explore {
   position: absolute;
+  z-index: 3;
   right: calc(var(--rd-gutter) + 32px);
   top: 50%;
   writing-mode: vertical-rl;
@@ -725,8 +786,9 @@ body.rd footer.rd-footer {
 .rd-rise[data-delay="2"] { transition-delay: 0.16s; }
 .rd-rise[data-delay="3"] { transition-delay: 0.24s; }
 
-.rd-lines { overflow: hidden; }
-.rd-lines > span { display: block; transform: translateY(105%); transition: transform 1.1s var(--rd-ease); }
+/* Padding keeps serif descenders (g, p, y) inside the clipping box. */
+.rd-lines { overflow: hidden; padding-bottom: 0.22em; }
+.rd-lines > span { display: block; transform: translateY(130%); transition: transform 1.1s var(--rd-ease); }
 .rd-lines.is-in > span { transform: none; }
 
 /* ─── SAVE THE SALE OVERLAY ─────────────────────────── */
@@ -907,6 +969,7 @@ body.rd .stts-impact-label {
   .rd-about { grid-template-columns: 1fr; }
   .rd-stats { grid-template-columns: repeat(2, 1fr); row-gap: 24px; }
   .rd-hero-frame { width: 34vw; }
+  .rd-hero-stages { left: 10px; bottom: 10px; gap: 10px; padding: 6px 10px; font-size: 10px; }
   .rd-explore { display: none; }
   .rd-preview { display: none; }
 }
