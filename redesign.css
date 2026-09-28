@@ -938,6 +938,19 @@ body.rd .stts-overlay .story-btn {
 body.rd .stts-overlay .story-btn--primary:hover { background: transparent; color: var(--rd-ink); border-color: var(--rd-ink); }
 body.rd .stts-overlay .story-reduced-note { font-family: var(--rd-sans); font-size: 13px; }
 
+/* Closing note */
+body.rd .stts-soon p {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-family: var(--rd-serif);
+  font-style: italic;
+  font-size: clamp(24px, 2.6vw, 32px);
+  line-height: 1.1;
+  color: var(--rd-mute);
+}
+body.rd .stts-soon p::before { content: ''; width: 8px; height: 8px; flex: none; background: var(--rd-red); }
+
 /* Impact */
 body.rd .stts-impact-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
 body.rd .stts-impact-stat { padding-top: 16px; border-top: 1px solid var(--rd-ink); }
